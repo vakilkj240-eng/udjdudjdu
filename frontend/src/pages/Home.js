@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/home/HeroSection';
-import LegalNewsTicker from '../components/home/LegalNewsTicker';
 import AILegalAssistant from '../components/home/AILegalAssistant';
 import SmartCaseMatching from '../components/home/SmartCaseMatching';
 import AffidavitBuilder from '../components/home/AffidavitBuilder';
@@ -15,7 +14,6 @@ const Home = () => {
     <div className="min-h-screen bg-transparent text-foreground overflow-x-hidden" data-testid="home-page">
       <Navbar noSpacer />
       <HeroSection />
-      <LegalNewsTicker />
       <AILegalAssistant />
       <SmartCaseMatching />
       <AffidavitBuilder />
