@@ -1,0 +1,51 @@
+ git push origin main
+Enumerating objects: 56, done.
+Counting objects: 100% (56/56), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (43/43), done.
+Writing objects: 100% (45/45), 562.39 KiB | 35.15 MiB/s, done.
+Total 45 (delta 29), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (29/29), completed with 11 local objects.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.
+remote:      Visit the repository settings page, https://github.com/vakilkj240-eng/udjdudjdu/settings/security_analysis
+remote:     
+remote:     
+remote:       —— OpenAI API Key ————————————————————————————————————
+remote:        locations:
+remote:          - commit: ebc490a93481d0c5849dc83c047a5053c7c9e6b9
+remote:            path: backend/render.yaml:17
+remote:          - commit: 8c0f63f5168be309c52af5cea23dee233e3bd909
+remote:            path: render.yaml:18
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/vakilkj240-eng/udjdudjdu/security/secret-scanning/unblock-secret/3FSY591GVNxop6vTm1Twp5gbk1m
+remote:     
+remote:     
+remote:       —— Groq API Key ——————————————————————————————————————
+remote:        locations:
+remote:          - commit: ebc490a93481d0c5849dc83c047a5053c7c9e6b9
+remote:            path: backend/render.yaml:19
+remote:          - commit: 8c0f63f5168be309c52af5cea23dee233e3bd909
+remote:            path: render.yaml:20
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/vakilkj240-eng/udjdudjdu/security/secret-scanning/unblock-secret/3FSY58EpCBZK58Gqv4IMB1Xa8cJ
+remote:     
+remote: 
+remote: 
+To https://github.com/vakilkj240-eng/udjdudjdu.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/vakilkj240-eng/udjdudjdu.git'
+~/workspace$ 

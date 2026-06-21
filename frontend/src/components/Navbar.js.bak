@@ -1,0 +1,249 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import {
+  User, LogOut, FileText, Scale, BookOpen, Video, Users,
+  Calendar, Building2, ClipboardList, ScrollText, PenLine,
+  Menu, X, ChevronRight, Search
+} from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import NotificationBell from './NotificationBell';
+
+const clientLinks = [
+  { to: '/client/dashboard', icon: Scale, label: 'Intelligence' },
+  { to: '/client/cases', icon: BookOpen, label: 'My Cases' },
+  { to: '/client/case/new', icon: ClipboardList, label: 'New Case' },
+  { to: '/client/affidavit', icon: FileText, label: 'Affidavit Builder' },
+  { to: '/client/lawyers', icon: Users, label: 'Find Lawyers' },
+  { to: '/firms', icon: Building2, label: 'Firms' },
+  { to: '/client/bookings', icon: Calendar, label: 'Bookings' },
+  { to: '/client/consultations', icon: Video, label: 'Video Consultations' },
+  { to: '/ipc', icon: ScrollText, label: 'IPC Browser' },
+];
+
+const lawyerLinks = [
+  { to: '/lawyer/dashboard', icon: Scale, label: 'Dashboard' },
+  { to: '/firms', icon: Building2, label: 'Firms' },
+  { to: '/client/consultations', icon: Video, label: 'Consultations' },
+];
+
+const writerLinks = [
+  { to: '/writer/dashboard', icon: PenLine, label: 'Dashboard' },
+  { to: '/ipc', icon: ScrollText, label: 'IPC Laws' },
+];
+
+const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const menuRef = useRef(null);
+  const searchRef = useRef(null);
+
+  const handleLogout = async () => {
+    setMenuOpen(false);
+    await logout();
+    navigate('/');
+  };
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setSearch('');
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+        setSearch('');
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  // Keyboard shortcut: press "/" to open menu and focus search; Escape to close
+  useEffect(() => {
+    const handleKey = (e) => {
+      const tag = e.target?.tagName?.toLowerCase();
+      const isTyping = tag === 'input' || tag === 'textarea' || e.target?.isContentEditable;
+      if (e.key === '/' && !isTyping && user) {
+        e.preventDefault();
+        setMenuOpen(true);
+        setSearch('');
+      }
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        setSearch('');
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [user]);
+
+  useEffect(() => {
+    if (menuOpen && searchRef.current) {
+      setTimeout(() => searchRef.current?.focus(), 80);
+    }
+  }, [menuOpen]);
+
+  const allLinks =
+    user?.role === 'client' ? clientLinks :
+    user?.role === 'lawyer' ? lawyerLinks :
+    user?.role === 'legal_writer' ? writerLinks : [];
+
+  const filtered = search.trim()
+    ? allLinks.filter(l => l.label.toLowerCase().includes(search.toLowerCase()))
+    : allLinks;
+
+  return (
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-[#EFE7D6]" data-testid="navbar">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-4">
+        <div className="flex justify-between items-center">
+          <Link to="/" className="font-heading text-2xl font-extrabold tracking-tight text-[#6D071A]" data-testid="navbar-logo">
+            VakilSetu
+          </Link>
+
+          <div className="flex items-center gap-4">
+            <Link
+              to="/services"
+              className="text-stone-600 hover:text-[#6D071A] transition-colors duration-200 text-sm hidden sm:block"
+              data-testid="navbar-services"
+            >
+              Services
+            </Link>
+
+            {user && <NotificationBell />}
+
+            {!user ? (
+              <Link to="/login" data-testid="navbar-login-button">
+                <button className="btn-primary">Login / Signup</button>
+              </Link>
+            ) : (
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 text-stone-600 text-sm" data-testid="navbar-user-info">
+                  <User className="w-4 h-4" />
+                  <span className="hidden md:block">{user.name}</span>
+                </div>
+
+                {/* Hamburger */}
+                <div className="relative" ref={menuRef}>
+                  <button
+                    onClick={() => { setMenuOpen(!menuOpen); setSearch(''); }}
+                    className="flex items-center gap-1.5 h-9 px-2.5 rounded-xl border border-[#EFE7D6] bg-white hover:border-[#D4AF37] hover:shadow-lg hover:shadow-[#6D071A]/10 transition-all"
+                    data-testid="navbar-hamburger"
+                    aria-label="Open menu (or press /)"
+                    title="Press / to open"
+                  >
+                    {menuOpen
+                    ? <X className="w-5 h-5 text-[#6D071A]" />
+                    : <Menu className="w-5 h-5 text-[#6D071A]" />}
+                  {!menuOpen && (
+                    <kbd className="hidden sm:inline-flex items-center text-[10px] font-mono text-slate-400 bg-slate-100 border border-slate-200 rounded px-1 py-0.5 leading-none">/</kbd>
+                  )}
+                  </button>
+
+                  <AnimatePresence>
+                  {menuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                      transition={{ duration: 0.2, ease: 'easeOut' }}
+                      className="absolute right-0 top-12 w-[min(18rem,calc(100vw-2rem))] bg-white rounded-2xl shadow-2xl shadow-[#6D071A]/15 border border-[#EFE7D6] z-50 overflow-hidden"
+                    >
+
+                      {/* User info header */}
+                      <div className="px-4 py-3 bg-[#FFFDF7] border-b border-[#EFE7D6]">
+                        <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-0.5">Signed in as</p>
+                        <p className="text-sm font-semibold text-slate-900 truncate">{user.name}</p>
+                        <p className="text-xs text-slate-400 capitalize">{user.role?.replace('_', ' ')}</p>
+                      </div>
+
+                      {/* Search bar */}
+                      <div className="px-3 py-2.5 border-b border-slate-100">
+                        <div className="flex items-center gap-2 bg-white border border-[#EFE7D6] rounded-xl px-3 py-2 focus-within:border-[#6D071A] focus-within:ring-4 focus-within:ring-[#6D071A]/10 transition-all">
+                          <Search className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
+                          <input
+                            ref={searchRef}
+                            type="text"
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                            placeholder="Search pages..."
+                            className="flex-1 bg-transparent text-sm text-slate-700 placeholder-slate-400 outline-none"
+                            data-testid="navbar-search"
+                          />
+                          {search && (
+                            <button onClick={() => setSearch('')} className="text-slate-400 hover:text-slate-600">
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Nav links */}
+                      <div className="py-2 max-h-72 overflow-y-auto">
+                        {filtered.length === 0 ? (
+                          <div className="px-4 py-6 text-center">
+                            <p className="text-sm text-slate-400">No pages match <span className="font-medium text-slate-600">"{search}"</span></p>
+                          </div>
+                        ) : (
+                          filtered.map(({ to, icon: Icon, label }) => {
+                            const isActive = location.pathname === to;
+                            const query = search.trim().toLowerCase();
+                            const idx = label.toLowerCase().indexOf(query);
+                            const highlighted = query && idx !== -1
+                              ? <>{label.slice(0, idx)}<mark className="bg-amber-200 text-slate-900 rounded px-0.5">{label.slice(idx, idx + query.length)}</mark>{label.slice(idx + query.length)}</>
+                              : label;
+
+                            return (
+                              <Link
+                                key={to}
+                                to={to}
+                                className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors group ${
+                                  isActive
+                                    ? 'bg-[#6D071A] text-white'
+                                    : 'text-stone-700 hover:bg-[#FFFDF7] hover:text-[#6D071A]'
+                                }`}
+                              >
+                                <span className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                  isActive ? 'bg-white/20' : 'bg-[#6D071A]/5 group-hover:bg-[#D4AF37]/20'
+                                }`}>
+                                  <Icon className="w-3.5 h-3.5" />
+                                </span>
+                                <span className="flex-1">{highlighted}</span>
+                                {!isActive && <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-slate-400" />}
+                              </Link>
+                            );
+                          })
+                        )}
+                      </div>
+
+                      {/* Logout */}
+                      <div className="border-t border-slate-100 py-2">
+                        <button
+                          onClick={handleLogout}
+                          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors group"
+                          data-testid="navbar-logout-button"
+                        >
+                          <span className="w-7 h-7 rounded-lg bg-red-50 group-hover:bg-red-100 flex items-center justify-center flex-shrink-0">
+                            <LogOut className="w-3.5 h-3.5" />
+                          </span>
+                          Logout
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

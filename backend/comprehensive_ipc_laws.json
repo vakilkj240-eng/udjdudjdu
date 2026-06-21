@@ -1,0 +1,236 @@
+[
+  {
+    "ipc_section": "IPC 302",
+    "title": "Punishment for Murder",
+    "description": "Whoever commits murder shall be punished with death or imprisonment for life, and shall also be liable to fine. Murder involves intentional killing with malice aforethought.",
+    "keywords": ["murder", "killing", "death", "homicide", "intentional death"]
+  },
+  {
+    "ipc_section": "IPC 304",
+    "title": "Culpable Homicide Not Amounting to Murder",
+    "description": "Whoever commits culpable homicide not amounting to murder shall be punished with imprisonment for life or up to 10 years and fine. Applies when death is caused without murderous intent.",
+    "keywords": ["culpable homicide", "manslaughter", "unintentional death", "reckless death"]
+  },
+  {
+    "ipc_section": "IPC 307",
+    "title": "Attempt to Murder",
+    "description": "Whoever does any act with intention or knowledge likely to cause death shall be punished with imprisonment up to 10 years and fine. If hurt is caused, may extend to life imprisonment.",
+    "keywords": ["attempt murder", "attempted killing", "assault with intent"]
+  },
+  {
+    "ipc_section": "IPC 120B",
+    "title": "Criminal Conspiracy",
+    "description": "When two or more persons agree to do an illegal act or legal act by illegal means, it constitutes criminal conspiracy punishable as if the offense was committed.",
+    "keywords": ["conspiracy", "criminal agreement", "joint criminal intent"]
+  },
+  {
+    "ipc_section": "IPC 34",
+    "title": "Acts Done by Several Persons in Furtherance of Common Intention",
+    "description": "When a criminal act is done by several persons in furtherance of common intention, each person is liable as if the act was done by them alone.",
+    "keywords": ["common intention", "joint liability", "group crime"]
+  },
+  {
+    "ipc_section": "IPC 141",
+    "title": "Unlawful Assembly",
+    "description": "An assembly of five or more persons with common object to commit unlawful act, use criminal force, or resist legal authority constitutes unlawful assembly.",
+    "keywords": ["unlawful assembly", "mob", "riot", "illegal gathering"]
+  },
+  {
+    "ipc_section": "IPC 147",
+    "title": "Rioting",
+    "description": "Whoever is guilty of rioting shall be punished with imprisonment up to 2 years or fine or both. Rioting involves use of force by unlawful assembly.",
+    "keywords": ["rioting", "public violence", "mob violence"]
+  },
+  {
+    "ipc_section": "IPC 323",
+    "title": "Voluntarily Causing Hurt",
+    "description": "Whoever voluntarily causes hurt shall be punished with imprisonment up to 1 year or fine up to Rs. 1,000 or both.",
+    "keywords": ["assault", "hurt", "physical harm", "injury"]
+  },
+  {
+    "ipc_section": "IPC 324",
+    "title": "Voluntarily Causing Hurt by Dangerous Weapons",
+    "description": "Causing hurt by dangerous weapons or means shall be punished with imprisonment up to 3 years or fine or both.",
+    "keywords": ["assault with weapon", "dangerous assault", "armed attack"]
+  },
+  {
+    "ipc_section": "IPC 325",
+    "title": "Voluntarily Causing Grievous Hurt",
+    "description": "Whoever voluntarily causes grievous hurt shall be punished with imprisonment up to 7 years and fine.",
+    "keywords": ["grievous hurt", "serious injury", "severe harm"]
+  },
+  {
+    "ipc_section": "IPC 354",
+    "title": "Assault or Criminal Force to Woman with Intent to Outrage Modesty",
+    "description": "Assault or use of criminal force to woman intending to outrage her modesty shall be punished with imprisonment 1-5 years and fine.",
+    "keywords": ["molestation", "outrage modesty", "sexual assault", "harassment"]
+  },
+  {
+    "ipc_section": "IPC 354A",
+    "title": "Sexual Harassment",
+    "description": "Physical contact and advances involving unwelcome sexual overtures, demand for sexual favours, or showing pornography constitutes sexual harassment.",
+    "keywords": ["sexual harassment", "unwelcome advances", "workplace harassment"]
+  },
+  {
+    "ipc_section": "IPC 354B",
+    "title": "Assault or Use of Criminal Force to Woman with Intent to Disrobe",
+    "description": "Assaulting woman with intent to disrobe shall be punished with imprisonment 3-7 years and fine.",
+    "keywords": ["disrobing", "forced undressing", "assault woman"]
+  },
+  {
+    "ipc_section": "IPC 363",
+    "title": "Kidnapping",
+    "description": "Whoever kidnaps any person from India or from lawful guardianship shall be punished with imprisonment up to 7 years and fine.",
+    "keywords": ["kidnapping", "abduction", "illegal detention"]
+  },
+  {
+    "ipc_section": "IPC 365",
+    "title": "Kidnapping with Intent to Murder",
+    "description": "Kidnapping with intent that person may be murdered or subjected to grievous hurt shall be punished with life imprisonment or rigorous imprisonment up to 10 years.",
+    "keywords": ["kidnapping for murder", "abduction with intent"]
+  },
+  {
+    "ipc_section": "IPC 376",
+    "title": "Rape",
+    "description": "Sexual intercourse without consent constitutes rape, punishable with rigorous imprisonment minimum 10 years extending to life and fine.",
+    "keywords": ["rape", "sexual assault", "non-consensual intercourse"]
+  },
+  {
+    "ipc_section": "IPC 377",
+    "title": "Unnatural Offenses",
+    "description": "Carnal intercourse against order of nature punishable with life imprisonment or up to 10 years and fine. Partially struck down by Supreme Court.",
+    "keywords": ["unnatural offenses", "section 377"]
+  },
+  {
+    "ipc_section": "IPC 379",
+    "title": "Theft",
+    "description": "Dishonest taking of movable property without consent constitutes theft, punishable with imprisonment up to 3 years or fine or both.",
+    "keywords": ["theft", "stealing", "dishonest taking", "larceny"]
+  },
+  {
+    "ipc_section": "IPC 380",
+    "title": "Theft in Dwelling House",
+    "description": "Theft in dwelling house, tents or vessels shall be punished with imprisonment up to 7 years and fine.",
+    "keywords": ["burglary", "house theft", "dwelling theft"]
+  },
+  {
+    "ipc_section": "IPC 392",
+    "title": "Robbery",
+    "description": "Theft with use of force or threat constitutes robbery, punishable with rigorous imprisonment up to 10 years and fine.",
+    "keywords": ["robbery", "armed theft", "forcible taking"]
+  },
+  {
+    "ipc_section": "IPC 395",
+    "title": "Dacoity",
+    "description": "Robbery by five or more persons constitutes dacoity, punishable with rigorous imprisonment up to life and fine.",
+    "keywords": ["dacoity", "gang robbery", "organized theft"]
+  },
+  {
+    "ipc_section": "IPC 406",
+    "title": "Criminal Breach of Trust",
+    "description": "Dishonest misappropriation of property entrusted constitutes criminal breach of trust, punishable with imprisonment up to 3 years or fine or both.",
+    "keywords": ["breach of trust", "misappropriation", "embezzlement"]
+  },
+  {
+    "ipc_section": "IPC 409",
+    "title": "Criminal Breach of Trust by Public Servant or Banker",
+    "description": "Breach of trust by public servant, banker, merchant or agent shall be punished with life imprisonment or up to 10 years and fine.",
+    "keywords": ["public servant fraud", "banker fraud", "fiduciary breach"]
+  },
+  {
+    "ipc_section": "IPC 415",
+    "title": "Cheating",
+    "description": "Dishonestly inducing person to deliver property or consent by deception constitutes cheating.",
+    "keywords": ["cheating", "fraud", "deception", "deceit"]
+  },
+  {
+    "ipc_section": "IPC 417",
+    "title": "Punishment for Cheating",
+    "description": "Cheating shall be punished with imprisonment up to 1 year or fine or both.",
+    "keywords": ["fraud punishment", "cheating penalty"]
+  },
+  {
+    "ipc_section": "IPC 420",
+    "title": "Cheating and Dishonestly Inducing Delivery of Property",
+    "description": "Cheating and dishonestly inducing delivery of property shall be punished with imprisonment up to 7 years and fine.",
+    "keywords": ["cheating property", "fraud delivery", "dishonest inducement"]
+  },
+  {
+    "ipc_section": "IPC 447",
+    "title": "Criminal Trespass",
+    "description": "Entering property with intent to commit offense, intimidate or annoy constitutes criminal trespass, punishable with imprisonment up to 3 months or fine up to Rs. 500.",
+    "keywords": ["trespass", "illegal entry", "unlawful entry"]
+  },
+  {
+    "ipc_section": "IPC 448",
+    "title": "House Trespass",
+    "description": "Criminal trespass in building used as dwelling or place of worship constitutes house trespass.",
+    "keywords": ["house trespass", "dwelling intrusion"]
+  },
+  {
+    "ipc_section": "IPC 451",
+    "title": "House Trespass to Commit Offense Punishable with Imprisonment",
+    "description": "House trespass to commit offense punishable with imprisonment shall be punished with imprisonment up to 2 years and fine.",
+    "keywords": ["burglary intent", "criminal intrusion"]
+  },
+  {
+    "ipc_section": "IPC 468",
+    "title": "Forgery for Purpose of Cheating",
+    "description": "Forgery intending document be used for cheating shall be punished with imprisonment up to 7 years and fine.",
+    "keywords": ["forgery", "fake document", "fraudulent document"]
+  },
+  {
+    "ipc_section": "IPC 471",
+    "title": "Using as Genuine a Forged Document",
+    "description": "Using as genuine a forged document or electronic record constitutes offense punishable as if forging.",
+    "keywords": ["use forged document", "fake document use"]
+  },
+  {
+    "ipc_section": "IPC 494",
+    "title": "Marrying Again During Lifetime of Spouse",
+    "description": "Marrying again during spouse's lifetime without divorce constitutes bigamy, punishable with imprisonment up to 7 years and fine.",
+    "keywords": ["bigamy", "second marriage", "polygamy"]
+  },
+  {
+    "ipc_section": "IPC 498A",
+    "title": "Cruelty by Husband or Relatives",
+    "description": "Cruelty by husband or relatives including dowry harassment shall be punished with imprisonment up to 3 years and fine.",
+    "keywords": ["domestic violence", "dowry harassment", "cruelty wife"]
+  },
+  {
+    "ipc_section": "IPC 499",
+    "title": "Defamation",
+    "description": "Making or publishing imputation harming reputation constitutes defamation.",
+    "keywords": ["defamation", "libel", "slander", "reputation harm"]
+  },
+  {
+    "ipc_section": "IPC 500",
+    "title": "Punishment for Defamation",
+    "description": "Defamation shall be punished with imprisonment up to 2 years or fine or both.",
+    "keywords": ["defamation punishment", "libel penalty"]
+  },
+  {
+    "ipc_section": "IPC 504",
+    "title": "Intentional Insult with Intent to Provoke Breach of Peace",
+    "description": "Intentionally insulting to provoke breach of peace shall be punished with imprisonment up to 2 years or fine or both.",
+    "keywords": ["insult", "provocation", "breach of peace"]
+  },
+  {
+    "ipc_section": "IPC 506",
+    "title": "Criminal Intimidation",
+    "description": "Threatening with injury to person, reputation or property constitutes criminal intimidation, punishable with imprisonment up to 2 years or fine or both.",
+    "keywords": ["threat", "intimidation", "criminal threat"]
+  },
+  {
+    "ipc_section": "IPC 509",
+    "title": "Word, Gesture or Act Intended to Insult Modesty of Woman",
+    "description": "Word, gesture or act insulting woman's modesty shall be punished with imprisonment up to 3 years and fine.",
+    "keywords": ["insult modesty", "verbal harassment", "gesture harassment"]
+  },
+  {
+    "ipc_section": "IPC 511",
+    "title": "Attempting to Commit Offenses",
+    "description": "Attempting to commit offense punishable with imprisonment shall be punished with up to half the maximum imprisonment for that offense.",
+    "keywords": ["attempt offense", "criminal attempt"]
+  }
+]

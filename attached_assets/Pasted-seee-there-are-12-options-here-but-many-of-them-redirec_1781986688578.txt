@@ -1,0 +1,56 @@
+seee there are 12 options here, but many of them redirect to same page , so combine these same directing pages into one option, like than group them and format design them according to the page design , also in the imsge 2 the bookings option case be shown inside the my cases where the my cases can show with booked as additional information. also in the imgae three from the image 4 in the gavel, remove that rotating circle from the both ends of the gavel. also upgrade the gavel, pillar,books,table , scales of justice more realistic and also work on the admin page , i need the admin page to work and also the pdf nlp to extract text from file and analyse and show inthe intelligence and in admin page the demo login for admin , i need the option nlp to work there and analyse and orgnaise on the basis of which type of file it it and the information from it extract and add it to the sql subase directly synchronisation and thus affecting the dfatabase of the our project and i need the updates info to show exactly wherewere it is required , like if its bns or ipc then in law and on law points , then case histories then similar cases , like that .
+
+
+Show less
+5 minutes ago
+
+Show less
+
+Planning page and navbar adjustments (9 seconds)
+This is a big set of changes. Let me read all the relevant files in parallel before touching anything.
+
+
+5 actions
+Let me read all the key files in parallel to understand the full picture.
+
+
+5 actions
+Large request — let me read all the key files in parallel so I can plan precisely.
+
+
+5 actions
+Let me read the remaining files I need before making all the changes.
+
+
+5 actions
+Now I have everything I need. Let me execute all changes in parallel. I'll split this into groups:
+
+Group 1 (now): Services consolidation + Navbar + Gavel ring removal
+Group 2 (immediately after): MyCases + bookings integration
+Group 3: Admin routes rewrite to MongoDB + NLP pipeline
+
+
+4 actions
+All services are running. Now let me execute all changes in parallel — Services consolidation, Navbar, Gavel, MyCases+Bookings, and Admin rewrite all at once.
+
+
+4 actions
+All three services are running. Now let me finish all remaining changes in parallel — Services card upgrade, MyCases+Bookings tab, and Admin rewrite.
+
+also the gavel and other 3d model upgradation and mongodb to supabse integration through admin dasboard
+
+1 minute ago
+
+Show less
+
+Planning remaining feature updates (6 seconds)
+All three workflows running. Let me finish everything in parallel — Services card upgrade, MyCases+Bookings, Admin MongoDB rewrite, and 3D scene upgrade.
+
+
+5 actions
+make no errors and also do not mess up the frame and design
+
+Just now
+
+Planning workflow adjustments (26 seconds)
+All workflows running. Let me read the remaining admin routes before making any changes, so I don't break anything.

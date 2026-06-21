@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gavel &amp; Brief</title>
+    <script>
+      // GitHub Pages SPA redirect trick
+      // Stores the path in sessionStorage and redirects to the base URL
+      var base = '/udjdudjdu/';
+      var path = window.location.pathname.replace(base, '');
+      var search = window.location.search;
+      var hash = window.location.hash;
+      sessionStorage.setItem('ghpages_redirect', path + search + hash);
+      window.location.replace(base);
+    </script>
+  </head>
+  <body></body>
+</html>

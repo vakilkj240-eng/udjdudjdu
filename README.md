@@ -1,0 +1,134 @@
+# Gavel & Brief — AI-Powered Legal Intelligence Platform
+
+India's most trusted legal platform connecting clients with lawyers through AI-powered case analysis, document drafting, and legal intelligence.
+
+---
+
+## Project Structure
+
+```
+gavel-brief/
+├── backend/          # FastAPI Python backend (API + AI engine)
+├── frontend/         # React + Vite client application
+├── admin/            # React + TypeScript admin dashboard
+└── .gitignore
+```
+
+---
+
+## Features
+
+- **Legal Intelligence Engine** — 5-phase AI case intake flow (Describe → Analyze → Questions → Results → NyayID)
+- **RAG Analysis** — TF-IDF similarity matching against IPC laws and past court cases
+- **NyayID** — Unique case profile with downloadable PDF report
+- **Affidavit Builder** — AI-powered legal document drafting
+- **Lawyer Matching** — Score-based lawyer recommendation and booking
+- **Lawyer Booking** — Calendar-based appointment system (Video / Phone)
+- **Legal Writer Portal** — Content writers can draft legal articles and earn credits
+- **Admin Dashboard** — Manage documents, chunks, acts, and users
+- **Multi-language Support** — All 22 Indian languages
+- **Dark Mode** — Full dark/light theme support
+
+---
+
+## Tech Stack
+
+| Layer     | Technology                                      |
+|-----------|-------------------------------------------------|
+| Frontend  | React 19, Vite, Tailwind CSS, Radix UI, Framer Motion, Three.js |
+| Backend   | FastAPI, Python 3.11, Motor (MongoDB), scikit-learn TF-IDF |
+| Admin     | React 18, TypeScript, Vite, Tailwind CSS        |
+| AI        | OpenAI GPT-4o-mini / Groq Llama 3.1 (fallback) |
+| Database  | MongoDB Atlas (primary)                         |
+| Auth      | JWT (PyJWT + bcrypt)                            |
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js 20+
+- Python 3.11+
+- MongoDB Atlas account (or local MongoDB)
+
+### 1. Backend Setup
+
+```bash
+cd backend
+pip install -r requirements.txt
+```
+
+Create a `.env` file in `backend/`:
+```env
+MONGO_URL=mongodb+srv://<user>:<password>@cluster.mongodb.net/vakilsetu_db
+JWT_SECRET=your_jwt_secret_here
+OPENAI_API_KEY=your_openai_key_here     # for AI features
+GROQ_API_KEY=your_groq_key_here         # free alternative to OpenAI
+```
+
+Start the backend:
+```bash
+uvicorn server:app --host 0.0.0.0 --port 8000
+```
+
+### 2. Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev   # runs on http://localhost:5000
+```
+
+### 3. Admin Dashboard Setup
+
+```bash
+cd admin
+npm install
+npm run dev   # runs on http://localhost:3001
+```
+
+---
+
+## Environment Variables
+
+| Variable           | Where        | Description                              |
+|--------------------|--------------|------------------------------------------|
+| `MONGO_URL`        | backend/.env | MongoDB connection string                |
+| `JWT_SECRET`       | backend/.env | JWT signing secret                       |
+| `OPENAI_API_KEY`   | backend/.env | OpenAI key for AI features               |
+| `GROQ_API_KEY`     | backend/.env | Groq API key (free alternative to OpenAI)|
+| `ADMIN_EMAIL`      | backend/.env | Admin dashboard login email              |
+| `ADMIN_PASSWORD`   | backend/.env | Admin dashboard login password           |
+
+---
+
+## Demo Accounts
+
+| Role          | Email                   | Password      |
+|---------------|-------------------------|---------------|
+| Client        | client@test.com         | password123   |
+| Lawyer        | lawyer@test.com         | password123   |
+
+> Use the **Demo Lawyer**, **Demo Client**, or **Demo Writer** buttons on the login page for instant access.
+
+---
+
+## API Routes Overview
+
+| Prefix            | Description                        |
+|-------------------|------------------------------------|
+| `/api/auth/*`     | Login, register, token refresh     |
+| `/api/lawyers/*`  | Lawyer profiles, slots, reviews    |
+| `/api/bookings/*` | Create and manage bookings         |
+| `/api/cases/*`    | Case management                    |
+| `/api/analyze/*`  | AI case analysis engine            |
+| `/api/affidavit*` | Affidavit builder                  |
+| `/api/nyay/*`     | NyayID generation                  |
+| `/admin/api/*`    | Admin dashboard endpoints          |
+| `/ws/video/*`     | WebSocket video room               |
+
+---
+
+## License
+
+Private — All rights reserved.

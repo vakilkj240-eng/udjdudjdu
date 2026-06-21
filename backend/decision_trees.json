@@ -1,0 +1,325 @@
+{
+  "Criminal": {
+    "questions": [
+      {
+        "id": "q1",
+        "text": "Has an FIR been filed?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q2",
+          "no": "q3"
+        }
+      },
+      {
+        "id": "q2",
+        "text": "Do you have documentary evidence (photos, videos, messages)?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q4",
+          "no": "q4"
+        }
+      },
+      {
+        "id": "q3",
+        "text": "Do you plan to file an FIR?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q2",
+          "no": "end"
+        }
+      },
+      {
+        "id": "q4",
+        "text": "Are there any witnesses to the incident?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q5",
+          "no": "q5"
+        }
+      },
+      {
+        "id": "q5",
+        "text": "Has any physical harm or injury occurred?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "end",
+          "no": "end"
+        }
+      }
+    ],
+    "stamp_paper": "judicial",
+    "typical_duration": "6-12 months",
+    "complexity_factors": ["fir_filed", "evidence_available", "witnesses_present"]
+  },
+  "Civil": {
+    "questions": [
+      {
+        "id": "q1",
+        "text": "What is the nature of your civil dispute?",
+        "type": "mcq",
+        "options": ["Contract breach", "Property dispute", "Money recovery", "Other"],
+        "follow_up": {
+          "Contract breach": "q2",
+          "Property dispute": "q3",
+          "Money recovery": "q4",
+          "Other": "q5"
+        }
+      },
+      {
+        "id": "q2",
+        "text": "Do you have a written contract or agreement?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q3",
+        "text": "Do you have property ownership documents?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q4",
+        "text": "Do you have proof of the debt (invoices, receipts, messages)?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q5",
+        "text": "Do you have any documentary evidence for your claim?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q6",
+        "text": "Have you attempted negotiation or mediation?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "end",
+          "no": "end"
+        }
+      }
+    ],
+    "stamp_paper": "judicial",
+    "typical_duration": "12-24 months",
+    "complexity_factors": ["contract_available", "documentation", "value"]
+  },
+  "Family": {
+    "questions": [
+      {
+        "id": "q1",
+        "text": "What is the nature of your family matter?",
+        "type": "mcq",
+        "options": ["Divorce", "Child custody", "Maintenance", "Domestic violence", "Inheritance"],
+        "follow_up": {
+          "Divorce": "q2",
+          "Child custody": "q3",
+          "Maintenance": "q4",
+          "Domestic violence": "q5",
+          "Inheritance": "q6"
+        }
+      },
+      {
+        "id": "q2",
+        "text": "Is this a mutual consent divorce?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q7",
+          "no": "q7"
+        }
+      },
+      {
+        "id": "q3",
+        "text": "Is there an existing custody arrangement?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q7",
+          "no": "q7"
+        }
+      },
+      {
+        "id": "q4",
+        "text": "Do you have proof of income/expenses?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q7",
+          "no": "q7"
+        }
+      },
+      {
+        "id": "q5",
+        "text": "Have you filed a complaint under IPC 498A?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q7",
+          "no": "q7"
+        }
+      },
+      {
+        "id": "q6",
+        "text": "Is there a will or succession certificate?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q7",
+          "no": "q7"
+        }
+      },
+      {
+        "id": "q7",
+        "text": "Do you have marriage certificate or proof of relationship?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "end",
+          "no": "end"
+        }
+      }
+    ],
+    "stamp_paper": "judicial",
+    "typical_duration": "6-18 months",
+    "complexity_factors": ["mutual_consent", "children_involved", "property_division"]
+  },
+  "Property": {
+    "questions": [
+      {
+        "id": "q1",
+        "text": "What type of property issue are you facing?",
+        "type": "mcq",
+        "options": ["Ownership dispute", "Tenant dispute", "Illegal possession", "Property documentation"],
+        "follow_up": {
+          "Ownership dispute": "q2",
+          "Tenant dispute": "q3",
+          "Illegal possession": "q4",
+          "Property documentation": "q5"
+        }
+      },
+      {
+        "id": "q2",
+        "text": "Do you have registered sale deed or ownership documents?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q3",
+        "text": "Do you have a registered rent agreement?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q4",
+        "text": "Have you filed a police complaint for illegal possession?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q5",
+        "text": "What documents are you missing?",
+        "type": "mcq",
+        "options": ["Sale deed", "Title deed", "NOC", "Encumbrance certificate"],
+        "follow_up": {
+          "Sale deed": "q6",
+          "Title deed": "q6",
+          "NOC": "q6",
+          "Encumbrance certificate": "q6"
+        }
+      },
+      {
+        "id": "q6",
+        "text": "Is the property under any litigation or mortgage?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "end",
+          "no": "end"
+        }
+      }
+    ],
+    "stamp_paper": "non_judicial",
+    "typical_duration": "12-36 months",
+    "complexity_factors": ["documentation", "possession", "valuation"]
+  },
+  "Employment": {
+    "questions": [
+      {
+        "id": "q1",
+        "text": "What is the nature of your employment issue?",
+        "type": "mcq",
+        "options": ["Wrongful termination", "Salary/wage dispute", "Workplace harassment", "Contract dispute"],
+        "follow_up": {
+          "Wrongful termination": "q2",
+          "Salary/wage dispute": "q3",
+          "Workplace harassment": "q4",
+          "Contract dispute": "q5"
+        }
+      },
+      {
+        "id": "q2",
+        "text": "Do you have a termination letter or notice?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q3",
+        "text": "How long has the salary been pending?",
+        "type": "mcq",
+        "options": ["1-3 months", "3-6 months", "More than 6 months"],
+        "follow_up": {
+          "1-3 months": "q6",
+          "3-6 months": "q6",
+          "More than 6 months": "q6"
+        }
+      },
+      {
+        "id": "q4",
+        "text": "Do you have evidence of harassment (emails, messages, witnesses)?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q5",
+        "text": "Do you have a written employment contract?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "q6",
+          "no": "q6"
+        }
+      },
+      {
+        "id": "q6",
+        "text": "Have you raised this issue with HR or management?",
+        "type": "yes_no",
+        "follow_up": {
+          "yes": "end",
+          "no": "end"
+        }
+      }
+    ],
+    "stamp_paper": "non_judicial",
+    "typical_duration": "6-12 months",
+    "complexity_factors": ["contract_type", "documentation", "company_size"]
+  }
+}

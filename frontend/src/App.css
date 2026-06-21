@@ -1,0 +1,124 @@
+:root {
+  --theme-bg: #F5F0E8;
+  --theme-surface: #FFFFFF;
+  --theme-border: #E5DDD0;
+  --theme-text: #1A1614;
+  --theme-text-muted: #6B5E52;
+  --theme-gold: #D4AF37;
+  --theme-maroon: #7C1D2B;
+}
+
+.dark {
+  --theme-bg: #0F0D0B;
+  --theme-surface: #1C1916;
+  --theme-border: #2E2820;
+  --theme-text: #F0EBE0;
+  --theme-text-muted: #9E9082;
+  --theme-gold: #D4AF37;
+  --theme-maroon: #C23B52;
+}
+
+.app-container {
+  min-height: 100vh;
+  background-color: var(--theme-bg, #FFFFFF);
+  color: var(--theme-text, #111111);
+}
+
+
+.border-grid {
+  border: 1px solid #E5E5E5;
+}
+
+.border-grid-bottom {
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6D071A, #800020);
+  color: white;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(109, 7, 26, 0.22);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #800020, #6D071A);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(109, 7, 26, 0.28);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid #EFE7D6;
+  color: #6D071A;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  transition: border-color 200ms ease-out;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: #D4AF37;
+  box-shadow: 0 12px 26px rgba(212, 175, 55, 0.16);
+}
+
+.btn-accent {
+  background-color: #D4AF37;
+  color: #171717;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: background-color 200ms ease-out;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background-color: #C9A227;
+}
+
+.input-underline {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #E5E5E5;
+  border-radius: 0;
+  padding: 0.75rem 0;
+  transition: border-color 200ms ease-out;
+  outline: none;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+}
+
+.input-underline:hover {
+  border-bottom-color: #6D071A;
+}
+
+.input-underline:focus {
+  border-bottom-color: #6D071A;
+}
+
+.card-flat {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  padding: 2rem;
+}
+
+.progress-line {
+  height: 1px;
+  background-color: #E5E5E5;
+  position: relative;
+}
+
+.progress-fill {
+  height: 1px;
+  background-color: #111111;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: width 300ms ease-out;
+}
