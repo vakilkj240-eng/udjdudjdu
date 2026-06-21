@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import API_URL from '../lib/api';
-// Mock API fallback disabled — real backend is connected
+
+// Global axios defaults — 15s timeout, keeps requests snappy
+axios.defaults.timeout = 15000;
 
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem('access_token');
@@ -15,6 +17,12 @@ const AuthContext = createContext(null);
 
 export const useAuth = () => {
   return useContext(AuthContext);
+};
+
+// Silently ping the backend so Render wakes up before the user hits login
+const warmUpBackend = () => {
+  if (!API_URL) return; // dev mode uses Vite proxy — no cold start
+  axios.get(`${API_URL}/api/health`, { timeout: 30000 }).catch(() => {});
 };
 
 export const AuthProvider = ({ children }) => {
@@ -46,6 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     checkAuth();
+    warmUpBackend(); // wake Render as soon as app loads
   }, []);
 
   const checkAuth = () => {
