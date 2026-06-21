@@ -15,36 +15,36 @@ function checkWebGL() {
 
 /* ── shared PBR helpers — cinematic premium quality ── */
 const GOLD = {
-  color: '#D4A83A', roughness: 0.028, metalness: 1.0,
-  envMapIntensity: 6.5, emissive: '#C9A020', emissiveIntensity: 0.08,
-  clearcoat: 1.0, clearcoatRoughness: 0.015,
+  color: '#D4A030', roughness: 0.022, metalness: 1.0,
+  envMapIntensity: 8.0, emissive: '#C09018', emissiveIntensity: 0.10,
+  clearcoat: 1.0, clearcoatRoughness: 0.010,
   anisotropy: 1.0, anisotropyRotation: Math.PI / 2,
-  iridescence: 0.18, iridescenceIOR: 1.5,
+  iridescence: 0.22, iridescenceIOR: 1.55,
 };
 const DARK_GOLD = {
-  color: '#9A6E1A', roughness: 0.07, metalness: 0.99,
-  envMapIntensity: 4.5, emissive: '#9A6010', emissiveIntensity: 0.045,
-  clearcoat: 0.95, clearcoatRoughness: 0.03,
-  iridescence: 0.10, iridescenceIOR: 1.4,
+  color: '#8A5E10', roughness: 0.06, metalness: 1.0,
+  envMapIntensity: 5.5, emissive: '#8A5208', emissiveIntensity: 0.055,
+  clearcoat: 1.0, clearcoatRoughness: 0.025,
+  iridescence: 0.12, iridescenceIOR: 1.45,
 };
 const BRIGHT_GOLD = {
-  color: '#F5CE50', roughness: 0.018, metalness: 1.0,
-  envMapIntensity: 7.5, emissive: '#E8B020', emissiveIntensity: 0.14,
-  clearcoat: 1.0, clearcoatRoughness: 0.008,
-  iridescence: 0.22, iridescenceIOR: 1.6,
+  color: '#F8D048', roughness: 0.014, metalness: 1.0,
+  envMapIntensity: 9.0, emissive: '#F0A818', emissiveIntensity: 0.18,
+  clearcoat: 1.0, clearcoatRoughness: 0.006,
+  iridescence: 0.28, iridescenceIOR: 1.65,
 };
 const MARBLE = {
-  color: '#ede8e0', roughness: 0.03, metalness: 0.0,
-  clearcoat: 0.95, clearcoatRoughness: 0.04, envMapIntensity: 1.0,
-  sheen: 0.12, sheenColor: '#d8d0c4',
+  color: '#eee9e1', roughness: 0.025, metalness: 0.0,
+  clearcoat: 1.0, clearcoatRoughness: 0.03, envMapIntensity: 1.4,
+  sheen: 0.18, sheenColor: '#ddd5c8',
 };
 const DARK_WOOD = {
-  color: '#140601', roughness: 0.20, metalness: 0.05, clearcoat: 1.0,
-  clearcoatRoughness: 0.03, envMapIntensity: 1.4,
-  emissive: '#2a0e02', emissiveIntensity: 0.015,
-  sheen: 0.18, sheenColor: '#5a2010',
+  color: '#0e0400', roughness: 0.16, metalness: 0.04, clearcoat: 1.0,
+  clearcoatRoughness: 0.022, envMapIntensity: 1.8,
+  emissive: '#220a02', emissiveIntensity: 0.020,
+  sheen: 0.22, sheenColor: '#622010',
 };
-const MED_WOOD = { color: '#3a1404', roughness: 0.33, metalness: 0.02, clearcoat: 0.88, clearcoatRoughness: 0.05 };
+const MED_WOOD = { color: '#2e0e02', roughness: 0.28, metalness: 0.02, clearcoat: 0.92, clearcoatRoughness: 0.04, envMapIntensity: 1.2 };
 
 /* ─────────────────────────────────────────────
    CINEMATIC CAMERA — flies in from far on mount
@@ -256,36 +256,68 @@ function SoundBlock() {
 function JudgeBench() {
   return (
     <group position={[0, -4.82, -1.2]}>
-      <mesh receiveShadow>
-        <boxGeometry args={[18, 0.34, 4.0]} />
-        <meshPhysicalMaterial color="#0e0602" roughness={0.22} metalness={0.0}
-          clearcoat={1.0} clearcoatRoughness={0.03} envMapIntensity={1.0} />
+      {/* Main bench top — ultra-glossy lacquered ebony */}
+      <mesh receiveShadow castShadow>
+        <boxGeometry args={[18, 0.38, 4.0]} />
+        <meshPhysicalMaterial {...DARK_WOOD} />
       </mesh>
-      <mesh position={[0, -0.175, 0]} receiveShadow>
-        <boxGeometry args={[18, 0.07, 4.0]} />
-        <meshPhysicalMaterial color="#080402" roughness={0.4} metalness={0.0} clearcoat={0.5} />
+      {/* Bench top inset panel — slightly raised lighter wood for contrast */}
+      <mesh position={[0, 0.20, 0]}>
+        <boxGeometry args={[17.4, 0.025, 3.6]} />
+        <meshPhysicalMaterial color="#180a02" roughness={0.12} metalness={0.02}
+          clearcoat={1.0} clearcoatRoughness={0.015} envMapIntensity={2.0}
+          emissive="#220e04" emissiveIntensity={0.015} />
       </mesh>
-      <mesh position={[0, -1.5, 1.9]} receiveShadow>
-        <boxGeometry args={[18, 3.0, 0.28]} />
-        <meshPhysicalMaterial color="#100804" roughness={0.32} metalness={0.0}
-          clearcoat={0.8} clearcoatRoughness={0.04} />
+      {/* Front fascia panel */}
+      <mesh position={[0, -1.6, 1.92]} receiveShadow>
+        <boxGeometry args={[18, 3.2, 0.32]} />
+        <meshPhysicalMaterial color="#0c0600" roughness={0.20} metalness={0.02}
+          clearcoat={1.0} clearcoatRoughness={0.022} envMapIntensity={1.6}
+          emissive="#1a0a02" emissiveIntensity={0.018}
+          sheen={0.15} sheenColor="#5a1e0a" />
       </mesh>
-      {/* Gold top rail */}
-      <mesh position={[0, 0.22, 1.9]}>
-        <boxGeometry args={[18, 0.07, 0.1]} />
-        <meshPhysicalMaterial {...GOLD} clearcoat={0.8} clearcoatRoughness={0.06} />
+      {/* Gold top rail — thicker, more prominent */}
+      <mesh position={[0, 0.24, 1.93]}>
+        <boxGeometry args={[18.05, 0.09, 0.12]} />
+        <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.018}
+          emissiveIntensity={0.08} />
+      </mesh>
+      {/* Gold mid rail */}
+      <mesh position={[0, -1.58, 1.93]}>
+        <boxGeometry args={[18.05, 0.055, 0.10]} />
+        <meshPhysicalMaterial {...DARK_GOLD} clearcoat={1.0} clearcoatRoughness={0.022} />
       </mesh>
       {/* Gold bottom rail */}
-      <mesh position={[0, -2.97, 1.9]}>
-        <boxGeometry args={[18, 0.07, 0.1]} />
-        <meshPhysicalMaterial {...GOLD} clearcoat={0.8} clearcoatRoughness={0.06} />
+      <mesh position={[0, -3.15, 1.93]}>
+        <boxGeometry args={[18.05, 0.09, 0.12]} />
+        <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.018}
+          emissiveIntensity={0.08} />
       </mesh>
-      {/* Vertical pilasters */}
-      {[-8.5, -6.0, -3.5, -1.0, 1.5, 4.0, 6.5].map((x, i) => (
-        <mesh key={i} position={[x, -1.5, 1.96]}>
-          <boxGeometry args={[0.07, 3.0, 0.07]} />
-          <meshPhysicalMaterial {...DARK_GOLD} clearcoat={0.5} />
+      {/* Raised panel sections between pilasters */}
+      {[-7.25, -4.75, -2.25, 0.25, 2.75, 5.25].map((x, i) => (
+        <mesh key={i} position={[x, -1.58, 1.96]}>
+          <boxGeometry args={[2.3, 2.9, 0.06]} />
+          <meshPhysicalMaterial color="#140800" roughness={0.24} metalness={0.0}
+            clearcoat={0.85} clearcoatRoughness={0.03} envMapIntensity={1.2} />
         </mesh>
+      ))}
+      {/* Vertical pilasters — thicker, more architectural */}
+      {[-8.5, -6.0, -3.5, -1.0, 1.5, 4.0, 6.5].map((x, i) => (
+        <group key={i} position={[x, -1.58, 1.97]}>
+          <mesh>
+            <boxGeometry args={[0.11, 3.2, 0.11]} />
+            <meshPhysicalMaterial {...DARK_GOLD} clearcoat={0.9} />
+          </mesh>
+          {/* Pilaster capital */}
+          <mesh position={[0, 1.65, 0]}>
+            <boxGeometry args={[0.16, 0.08, 0.16]} />
+            <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.02} />
+          </mesh>
+          <mesh position={[0, -1.65, 0]}>
+            <boxGeometry args={[0.16, 0.08, 0.16]} />
+            <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.02} />
+          </mesh>
+        </group>
       ))}
     </group>
   );
@@ -299,29 +331,31 @@ function PillarWithFluting({ position, scale = 1 }) {
   const H = 10.2 * scale;
   const S = scale;
 
-  /* shared stone material */
+  /* shared stone material — warmer Carrara marble tones */
   const stone = (lightness = 0) => ({
-    roughness: 0.48 + lightness * 0.08,
+    roughness: 0.38 + lightness * 0.06,
     metalness: 0.0,
-    clearcoat: 0.35 - lightness * 0.05,
-    clearcoatRoughness: 0.22,
-    envMapIntensity: 0.55,
+    clearcoat: 0.55 - lightness * 0.04,
+    clearcoatRoughness: 0.16,
+    envMapIntensity: 0.85,
+    sheen: 0.06,
+    sheenColor: '#ddd8cc',
   });
 
   return (
     <group position={position}>
 
-      {/* ── SHAFT with entasis (slight belly) via tapered cylinders ── */}
+      {/* ── SHAFT with entasis — warmer ivory stone ── */}
       <mesh position={[0, 0.5, 0]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.24 * S, 0.32 * S, H * 0.5, 52]} />
-        <meshPhysicalMaterial color="#e2ddd5" {...stone()} />
+        <cylinderGeometry args={[0.24 * S, 0.32 * S, H * 0.5, 64]} />
+        <meshPhysicalMaterial color="#e8e3d8" {...stone()} />
       </mesh>
       <mesh position={[0, 0.5 + H * 0.25, 0]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.23 * S, 0.24 * S, H * 0.5, 52]} />
-        <meshPhysicalMaterial color="#e2ddd5" {...stone()} />
+        <cylinderGeometry args={[0.23 * S, 0.24 * S, H * 0.5, 64]} />
+        <meshPhysicalMaterial color="#e6e1d6" {...stone()} />
       </mesh>
 
-      {/* ── FLUTING — semicircular channels for authentic light-play ── */}
+      {/* ── FLUTING — deeper channels, higher contrast ── */}
       {Array.from({ length: FLUTES }).map((_, i) => {
         const angle = (i / FLUTES) * Math.PI * 2;
         const r = 0.255 * S;
@@ -329,8 +363,9 @@ function PillarWithFluting({ position, scale = 1 }) {
           <mesh key={i}
             position={[Math.sin(angle) * r, 0.5, Math.cos(angle) * r]}
             rotation={[0, -angle + Math.PI / 2, 0]} castShadow>
-            <cylinderGeometry args={[0.018 * S, 0.018 * S, H - 0.6, 8, 1, false, 0, Math.PI]} />
-            <meshPhysicalMaterial color="#c6c0b0" roughness={0.65} metalness={0.0} clearcoat={0.15} />
+            <cylinderGeometry args={[0.019 * S, 0.019 * S, H - 0.6, 10, 1, false, 0, Math.PI]} />
+            <meshPhysicalMaterial color="#b8b2a2" roughness={0.58} metalness={0.0}
+              clearcoat={0.22} clearcoatRoughness={0.18} envMapIntensity={0.5} />
           </mesh>
         );
       })}
@@ -642,55 +677,68 @@ function ScalesOfJustice() {
 function LawBook({ position, rotation, color, h, w, d }) {
   return (
     <group position={position} rotation={rotation}>
-      {/* Leather cover */}
+      {/* Premium leather cover — deep clearcoat, rich sheen */}
       <mesh castShadow receiveShadow>
         <boxGeometry args={[w, h, d]} />
-        <meshPhysicalMaterial color={color} roughness={0.7} metalness={0.0}
-          clearcoat={0.15} clearcoatRoughness={0.4} sheen={0.3} sheenColor="#a08060" envMapIntensity={0.3} />
+        <meshPhysicalMaterial color={color} roughness={0.62} metalness={0.0}
+          clearcoat={0.28} clearcoatRoughness={0.32}
+          sheen={0.42} sheenColor="#b09070"
+          envMapIntensity={0.55}
+          emissive={color} emissiveIntensity={0.012} />
       </mesh>
-      {/* Round spine edge — cylinder */}
-      <mesh position={[-w / 2, 0, 0]} rotation={[0, 0, 0]}>
-        <cylinderGeometry args={[h / 2, h / 2, d + 0.005, 20, 1, false, -Math.PI / 2, Math.PI]} />
-        <meshPhysicalMaterial color={color} roughness={0.7} metalness={0.0}
-          clearcoat={0.15} clearcoatRoughness={0.4} sheen={0.25} sheenColor="#a08060" />
+      {/* Round spine — cylinder, richer leather */}
+      <mesh position={[-w / 2, 0, 0]}>
+        <cylinderGeometry args={[h / 2, h / 2, d + 0.006, 28, 1, false, -Math.PI / 2, Math.PI]} />
+        <meshPhysicalMaterial color={color} roughness={0.60} metalness={0.0}
+          clearcoat={0.25} clearcoatRoughness={0.34}
+          sheen={0.38} sheenColor="#b09070" />
       </mesh>
-      {/* Spine gold band */}
-      <mesh position={[-w / 2 + 0.012, 0, 0]}>
-        <boxGeometry args={[0.024, h - 0.01, d + 0.006]} />
-        <meshPhysicalMaterial {...GOLD} clearcoat={0.8} clearcoatRoughness={0.08} />
+      {/* Spine gold inlay band */}
+      <mesh position={[-w / 2 + 0.013, 0, 0]}>
+        <boxGeometry args={[0.026, h - 0.008, d + 0.008]} />
+        <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.06}
+          emissiveIntensity={0.06} />
       </mesh>
-      {/* Pages block — cream with micro-edge detail */}
-      <mesh position={[w / 2 - 0.02, 0, 0]}>
-        <boxGeometry args={[0.04, h - 0.016, d - 0.018]} />
-        <meshPhysicalMaterial color="#f4efe4" roughness={0.92} metalness={0.0}
-          clearcoat={0.05} />
+      {/* Pages block — warm cream */}
+      <mesh position={[w / 2 - 0.018, 0, 0]}>
+        <boxGeometry args={[0.038, h - 0.014, d - 0.016]} />
+        <meshPhysicalMaterial color="#f6f1e6" roughness={0.94} metalness={0.0} clearcoat={0.04} />
       </mesh>
-      {/* Pages micro-lines (stacked thin slices) */}
-      {Array.from({ length: 5 }).map((_, i) => (
-        <mesh key={i} position={[w / 2 - 0.018, -h / 2 + 0.015 + i * (h - 0.03) / 5 + (h - 0.03) / 10, 0]}>
-          <boxGeometry args={[0.042, 0.004, d - 0.019]} />
-          <meshPhysicalMaterial color="#e0dbd0" roughness={0.95} metalness={0.0} />
+      {/* Pages micro-lines */}
+      {Array.from({ length: 7 }).map((_, i) => (
+        <mesh key={i} position={[w / 2 - 0.016, -h / 2 + 0.012 + i * (h - 0.025) / 7 + (h - 0.025) / 14, 0]}>
+          <boxGeometry args={[0.040, 0.0032, d - 0.018]} />
+          <meshPhysicalMaterial color="#ddd8cc" roughness={0.96} metalness={0.0} />
         </mesh>
       ))}
-      {/* Top/bottom gold corner ornaments */}
-      {[-h / 2 + 0.018, h / 2 - 0.018].map((y, i) => (
-        <mesh key={i} position={[-w / 2 + 0.015, y, 0]}>
-          <boxGeometry args={[0.03, 0.022, d + 0.004]} />
-          <meshPhysicalMaterial {...DARK_GOLD} clearcoat={0.7} />
+      {/* Gold corner bosses — top & bottom */}
+      {[-h / 2 + 0.016, h / 2 - 0.016].map((y, i) => (
+        <mesh key={i} position={[-w / 2 + 0.013, y, 0]}>
+          <boxGeometry args={[0.028, 0.024, d + 0.006]} />
+          <meshPhysicalMaterial {...DARK_GOLD} clearcoat={0.9} clearcoatRoughness={0.04} />
         </mesh>
       ))}
-      {/* Gold title panel on spine */}
-      <mesh position={[-w / 2 + 0.014, h * 0.18, 0]}>
-        <boxGeometry args={[0.028, h * 0.3, d * 0.52]} />
-        <meshPhysicalMaterial color="#c4982c" roughness={0.2} metalness={0.92}
-          envMapIntensity={2.0} emissive="#b88020" emissiveIntensity={0.04}
-          clearcoat={0.8} clearcoatRoughness={0.1} />
+      {/* Raised spine title panel */}
+      <mesh position={[-w / 2 + 0.015, h * 0.20, 0]}>
+        <boxGeometry args={[0.030, h * 0.32, d * 0.54]} />
+        <meshPhysicalMaterial color="#d4a830" roughness={0.14} metalness={0.95}
+          envMapIntensity={3.0} emissive="#c09820" emissiveIntensity={0.06}
+          clearcoat={1.0} clearcoatRoughness={0.07}
+          iridescence={0.10} iridescenceIOR={1.4} />
       </mesh>
-      {/* Bookmark ribbon */}
-      <mesh position={[w / 2 - 0.025, -h / 2 - 0.035, d * 0.2]}>
-        <boxGeometry args={[0.015, 0.08, 0.008]} />
-        <meshPhysicalMaterial color="#C9A84C" roughness={0.5} metalness={0.0}
-          clearcoat={0.1} transparent opacity={0.9} />
+      {/* Decorative spine ribbing bands */}
+      {[-h * 0.28, h * 0.06, h * 0.38].map((y, i) => (
+        <mesh key={i} position={[-w / 2 + 0.013, y, 0]}>
+          <boxGeometry args={[0.026, 0.010, d + 0.007]} />
+          <meshPhysicalMaterial {...DARK_GOLD} clearcoat={0.85} />
+        </mesh>
+      ))}
+      {/* Silk bookmark ribbon */}
+      <mesh position={[w / 2 - 0.022, -h / 2 - 0.04, d * 0.22]}>
+        <boxGeometry args={[0.013, 0.09, 0.006]} />
+        <meshPhysicalMaterial color="#D4A030" roughness={0.42} metalness={0.0}
+          clearcoat={0.15} transparent opacity={0.92}
+          sheen={0.5} sheenColor="#F0C050" />
       </mesh>
     </group>
   );
@@ -750,56 +798,61 @@ function GavelMesh({ gavelRef, onStrike, isDark }) {
         rotation={[0.15, -0.25, -0.72]} scale={1.55}
         onClick={onStrike} style={{ cursor: 'pointer' }}>
 
-        {/* ── HANDLE ── */}
-        {/* Lower shaft — thick, lacquered rich rosewood */}
+        {/* ── HANDLE — premium ebony rosewood, deeply lacquered ── */}
+        {/* Lower shaft */}
         <mesh position={[0, -3.1, 0]} castShadow>
-          <cylinderGeometry args={[0.19, 0.215, 3.1, 64]} />
-          <meshPhysicalMaterial color="#1e0901" roughness={0.18} metalness={0.06}
-            clearcoat={1.0} clearcoatRoughness={0.03}
-            envMapIntensity={1.6} emissive="#2a0e02" emissiveIntensity={0.018}
-            sheen={0.15} sheenColor="#5a2010" />
+          <cylinderGeometry args={[0.19, 0.218, 3.1, 80]} />
+          <meshPhysicalMaterial color="#180600" roughness={0.13} metalness={0.04}
+            clearcoat={1.0} clearcoatRoughness={0.018}
+            envMapIntensity={2.2} emissive="#1e0800" emissiveIntensity={0.022}
+            sheen={0.28} sheenColor="#6a2812" />
         </mesh>
-        {/* Upper shaft — tapers toward ferrule */}
+        {/* Upper shaft — tapers to ferrule */}
         <mesh position={[0, -1.1, 0]} castShadow>
-          <cylinderGeometry args={[0.105, 0.19, 2.0, 64]} />
-          <meshPhysicalMaterial color="#280e04" roughness={0.16} metalness={0.06}
-            clearcoat={1.0} clearcoatRoughness={0.03}
-            envMapIntensity={1.8} emissive="#2a0e02" emissiveIntensity={0.014}
-            sheen={0.12} sheenColor="#5a2010" />
+          <cylinderGeometry args={[0.108, 0.19, 2.0, 80]} />
+          <meshPhysicalMaterial color="#200a02" roughness={0.12} metalness={0.04}
+            clearcoat={1.0} clearcoatRoughness={0.016}
+            envMapIntensity={2.4} emissive="#1e0800" emissiveIntensity={0.018}
+            sheen={0.24} sheenColor="#6a2812" />
         </mesh>
-        {/* Wood grain bands — subtle color breaks for grain illusion */}
-        {[-3.8, -3.2, -2.5, -1.8, -1.1].map((y, i) => (
+        {/* Wood grain rings — richer color contrast */}
+        {[-3.9, -3.4, -2.8, -2.2, -1.6, -1.0].map((y, i) => (
           <mesh key={i} position={[0, y, 0]}>
-            <torusGeometry args={[0.21 - Math.abs(y + 2.0) * 0.006, 0.006, 10, 44]} />
-            <meshPhysicalMaterial color={i % 2 === 0 ? '#4a1a08' : '#1e0802'}
-              roughness={0.32} metalness={0.0} clearcoat={0.6} />
+            <torusGeometry args={[0.212 - Math.abs(y + 2.2) * 0.005, 0.0055, 12, 56]} />
+            <meshPhysicalMaterial color={i % 2 === 0 ? '#5a1e0a' : '#160502'}
+              roughness={0.28} metalness={0.0} clearcoat={0.7} clearcoatRoughness={0.04} />
           </mesh>
         ))}
-        {/* Handle end cap — sculpted rounded base */}
-        <mesh position={[0, -4.7, 0]} castShadow>
-          <sphereGeometry args={[0.215, 44, 44]} />
-          <meshPhysicalMaterial color="#200a02" roughness={0.32} metalness={0.0}
-            clearcoat={0.88} clearcoatRoughness={0.08} />
+        {/* Handle end cap — sculpted bulb base */}
+        <mesh position={[0, -4.72, 0]} castShadow>
+          <sphereGeometry args={[0.218, 56, 56]} />
+          <meshPhysicalMaterial color="#160400" roughness={0.25} metalness={0.02}
+            clearcoat={1.0} clearcoatRoughness={0.06} envMapIntensity={1.8}
+            sheen={0.18} sheenColor="#5a1e0a" />
         </mesh>
-        {/* Gold base cap ring */}
+        {/* Gold base cap ring — thicker, more detailed */}
+        <mesh position={[0, -4.54, 0]}>
+          <torusGeometry args={[0.215, 0.022, 20, 56]} />
+          <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.02} />
+        </mesh>
         <mesh position={[0, -4.52, 0]}>
-          <torusGeometry args={[0.212, 0.018, 16, 44]} />
-          <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.03} />
+          <torusGeometry args={[0.215, 0.008, 14, 56]} />
+          <meshPhysicalMaterial {...BRIGHT_GOLD} clearcoat={1.0} clearcoatRoughness={0.005} />
         </mesh>
-        {/* Leather grip wrapping — 8 tight bands */}
-        {Array.from({ length: 8 }).map((_, i) => (
-          <mesh key={i} position={[0, -1.85 + i * 0.22, 0]}>
-            <torusGeometry args={[0.155 - i * 0.004, 0.014, 16, 44]} />
-            <meshPhysicalMaterial color="#0a0402" roughness={0.92} metalness={0.0}
-              clearcoat={0.04} sheenColor="#2a1008" sheen={0.2} />
+        {/* Leather grip wrapping — 10 tight bands */}
+        {Array.from({ length: 10 }).map((_, i) => (
+          <mesh key={i} position={[0, -2.0 + i * 0.21, 0]}>
+            <torusGeometry args={[0.157 - i * 0.003, 0.016, 18, 56]} />
+            <meshPhysicalMaterial color="#0c0502" roughness={0.94} metalness={0.0}
+              clearcoat={0.05} sheenColor="#3a1208" sheen={0.28} />
           </mesh>
         ))}
-        {/* Leather between grip bands — slightly raised strips */}
-        {Array.from({ length: 7 }).map((_, i) => (
-          <mesh key={i} position={[0, -1.74 + i * 0.22, 0]}>
-            <cylinderGeometry args={[0.152 - i * 0.003, 0.152 - i * 0.003, 0.19, 36]} />
-            <meshPhysicalMaterial color="#160804" roughness={0.88} metalness={0.0}
-              clearcoat={0.06} />
+        {/* Leather between grip bands */}
+        {Array.from({ length: 9 }).map((_, i) => (
+          <mesh key={i} position={[0, -1.9 + i * 0.21, 0]}>
+            <cylinderGeometry args={[0.154 - i * 0.002, 0.154 - i * 0.002, 0.18, 44]} />
+            <meshPhysicalMaterial color="#120602" roughness={0.90} metalness={0.0}
+              clearcoat={0.08} sheen={0.12} sheenColor="#2a0e04" />
           </mesh>
         ))}
 
@@ -824,98 +877,106 @@ function GavelMesh({ gavelRef, onStrike, isDark }) {
           <meshPhysicalMaterial {...DARK_GOLD} clearcoat={0.8} />
         </mesh>
 
-        {/* ── HEAD — near-void obsidian in dark mode with gold glow ── */}
-        {/* Main barrel */}
+        {/* ── HEAD — premium ebony with mirror-polished dark finish ── */}
+        {/* Main barrel — ultra-high poly, near-mirror surface */}
         <mesh position={[0, 0.72, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-          <cylinderGeometry args={[0.625, 0.615, 3.0, 96]} />
-          <meshPhysicalMaterial color={isDark ? "#030100" : "#080200"} roughness={isDark ? 0.04 : 0.10} metalness={isDark ? 0.55 : 0.28}
-            clearcoat={1.0} clearcoatRoughness={0.02}
-            envMapIntensity={isDark ? 8.5 : 4.0} emissive={isDark ? "#1a0800" : "#100400"} emissiveIntensity={isDark ? 0.1 : 0.03}
-            sheen={0.08} sheenColor="#3a1008" />
+          <cylinderGeometry args={[0.628, 0.618, 3.0, 128]} />
+          <meshPhysicalMaterial
+            color={isDark ? "#020100" : "#060100"}
+            roughness={isDark ? 0.025 : 0.07}
+            metalness={isDark ? 0.72 : 0.45}
+            clearcoat={1.0} clearcoatRoughness={0.008}
+            envMapIntensity={isDark ? 12.0 : 6.5}
+            emissive={isDark ? "#180600" : "#0c0300"}
+            emissiveIntensity={isDark ? 0.12 : 0.04}
+            sheen={0.10} sheenColor="#4a1410"
+            iridescence={0.08} iridescenceIOR={1.4} />
         </mesh>
-        {/* Barrel crown (very slight bulge at center) */}
+        {/* Barrel crown — slight crown bulge, ultra-glossy */}
         <mesh position={[0, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.632, 0.632, 1.4, 96]} />
-          <meshPhysicalMaterial color={isDark ? "#040100" : "#0a0200"} roughness={isDark ? 0.03 : 0.08} metalness={isDark ? 0.6 : 0.32}
-            clearcoat={1.0} clearcoatRoughness={0.01} envMapIntensity={isDark ? 9.0 : 4.5}
-            emissive={isDark ? "#200800" : "#0e0200"} emissiveIntensity={isDark ? 0.08 : 0.025} />
+          <cylinderGeometry args={[0.636, 0.636, 1.2, 128]} />
+          <meshPhysicalMaterial
+            color={isDark ? "#030100" : "#080200"}
+            roughness={isDark ? 0.018 : 0.055}
+            metalness={isDark ? 0.78 : 0.52}
+            clearcoat={1.0} clearcoatRoughness={0.005}
+            envMapIntensity={isDark ? 14.0 : 7.5}
+            emissive={isDark ? "#1e0800" : "#100300"}
+            emissiveIntensity={isDark ? 0.10 : 0.03} />
         </mesh>
 
-        {/* Left bevel — 3-step chamfer for smooth professional taper */}
-        <mesh position={[-1.585, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.585, 0.615, 0.175, 80]} />
-          <meshPhysicalMaterial color="#100604" roughness={0.20} metalness={0.14}
-            clearcoat={0.95} clearcoatRoughness={0.04} />
+        {/* Left bevel — 4-step chamfer for ultra-smooth taper */}
+        <mesh position={[-1.52, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.600, 0.628, 0.14, 96]} />
+          <meshPhysicalMaterial color="#0c0502" roughness={0.12} metalness={0.40}
+            clearcoat={1.0} clearcoatRoughness={0.02} envMapIntensity={5.0} />
         </mesh>
-        <mesh position={[-1.735, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.500, 0.585, 0.150, 80]} />
-          <meshPhysicalMaterial color="#0c0402" roughness={0.22} metalness={0.12}
-            clearcoat={0.90} clearcoatRoughness={0.05} />
+        <mesh position={[-1.645, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.540, 0.600, 0.13, 96]} />
+          <meshPhysicalMaterial color="#0a0402" roughness={0.15} metalness={0.32}
+            clearcoat={0.98} clearcoatRoughness={0.03} envMapIntensity={4.0} />
         </mesh>
-        <mesh position={[-1.865, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.420, 0.500, 0.120, 80]} />
-          <meshPhysicalMaterial color="#080302" roughness={0.25} metalness={0.10}
-            clearcoat={0.85} clearcoatRoughness={0.06} />
+        <mesh position={[-1.760, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.468, 0.540, 0.115, 96]} />
+          <meshPhysicalMaterial color="#080302" roughness={0.18} metalness={0.24}
+            clearcoat={0.95} clearcoatRoughness={0.04} envMapIntensity={3.2} />
         </mesh>
-
-        {/* Right bevel — 3-step chamfer */}
-        <mesh position={[1.585, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.585, 0.615, 0.175, 80]} />
-          <meshPhysicalMaterial color="#100604" roughness={0.20} metalness={0.14}
-            clearcoat={0.95} clearcoatRoughness={0.04} />
-        </mesh>
-        <mesh position={[1.735, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.500, 0.585, 0.150, 80]} />
-          <meshPhysicalMaterial color="#0c0402" roughness={0.22} metalness={0.12}
-            clearcoat={0.90} clearcoatRoughness={0.05} />
-        </mesh>
-        <mesh position={[1.865, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.420, 0.500, 0.120, 80]} />
-          <meshPhysicalMaterial color="#080302" roughness={0.25} metalness={0.10}
-            clearcoat={0.85} clearcoatRoughness={0.06} />
+        <mesh position={[-1.866, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.420, 0.468, 0.095, 96]} />
+          <meshPhysicalMaterial color="#060202" roughness={0.22} metalness={0.18}
+            clearcoat={0.92} clearcoatRoughness={0.05} envMapIntensity={2.5} />
         </mesh>
 
-        {/* Gold accent rings */}
-        {[-1.4, -0.9, -0.45, 0.0, 0.45, 0.9, 1.4].map((x, i) => (
+        {/* Right bevel — 4-step chamfer */}
+        <mesh position={[1.52, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.600, 0.628, 0.14, 96]} />
+          <meshPhysicalMaterial color="#0c0502" roughness={0.12} metalness={0.40}
+            clearcoat={1.0} clearcoatRoughness={0.02} envMapIntensity={5.0} />
+        </mesh>
+        <mesh position={[1.645, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.540, 0.600, 0.13, 96]} />
+          <meshPhysicalMaterial color="#0a0402" roughness={0.15} metalness={0.32}
+            clearcoat={0.98} clearcoatRoughness={0.03} envMapIntensity={4.0} />
+        </mesh>
+        <mesh position={[1.760, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.468, 0.540, 0.115, 96]} />
+          <meshPhysicalMaterial color="#080302" roughness={0.18} metalness={0.24}
+            clearcoat={0.95} clearcoatRoughness={0.04} envMapIntensity={3.2} />
+        </mesh>
+        <mesh position={[1.866, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.420, 0.468, 0.095, 96]} />
+          <meshPhysicalMaterial color="#060202" roughness={0.22} metalness={0.18}
+            clearcoat={0.92} clearcoatRoughness={0.05} envMapIntensity={2.5} />
+        </mesh>
+
+        {/* Gold accent rings — thicker, richer, more prominent */}
+        {[-1.36, -0.88, -0.44, 0.0, 0.44, 0.88, 1.36].map((x, i) => (
           <mesh key={i} position={[x, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-            <cylinderGeometry args={[0.628, 0.628, i === 3 ? 0.20 : 0.052, 80]} />
+            <cylinderGeometry args={[0.640, 0.640, i === 3 ? 0.24 : 0.062, 96]} />
             <meshPhysicalMaterial
-              color={i === 3 ? '#e8d050' : '#C9A84C'}
-              roughness={i === 3 ? 0.04 : 0.07}
+              color={i === 3 ? '#F0D848' : '#D4A030'}
+              roughness={i === 3 ? 0.016 : 0.030}
               metalness={1.0}
-              envMapIntensity={i === 3 ? 4.5 : 3.5}
-              emissive={i === 3 ? '#d4b020' : '#C9A84C'}
-              emissiveIntensity={i === 3 ? 0.1 : 0.04}
+              envMapIntensity={i === 3 ? 8.0 : 5.5}
+              emissive={i === 3 ? '#E0B820' : '#C9A030'}
+              emissiveIntensity={i === 3 ? 0.14 : 0.06}
               clearcoat={1.0}
-              clearcoatRoughness={0.02}
-              anisotropy={0.9}
+              clearcoatRoughness={0.008}
+              anisotropy={1.0}
               anisotropyRotation={Math.PI / 2}
+              iridescence={0.15} iridescenceIOR={1.5}
             />
           </mesh>
         ))}
 
-        {/* Strike faces — positioned at end of final bevel (x=±1.927) */}
-        {[-1.927, 1.927].map((x, i) => (
+        {/* Smooth flat end caps — no decorative circles, clean machined finish */}
+        {[-1.928, 1.928].map((x, i) => (
           <mesh key={i} position={[x, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-            <circleGeometry args={[0.419, 56]} />
-            <meshPhysicalMaterial color="#080402" roughness={0.10} metalness={0.60}
-              clearcoat={1.0} clearcoatRoughness={0.015} envMapIntensity={2.2} />
-          </mesh>
-        ))}
-        {/* Strike face — mid concentric ring for realistic machined look */}
-        {[-1.926, 1.926].map((x, i) => (
-          <mesh key={i} position={[x, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-            <ringGeometry args={[0.28, 0.38, 48]} />
-            <meshPhysicalMaterial color="#120800" roughness={0.18} metalness={0.45}
-              clearcoat={0.9} clearcoatRoughness={0.04} envMapIntensity={1.5} />
-          </mesh>
-        ))}
-        {/* Strike face — small centre inset boss */}
-        {[-1.925, 1.925].map((x, i) => (
-          <mesh key={i} position={[x, 0.72, 0]} rotation={[0, 0, Math.PI / 2]}>
-            <circleGeometry args={[0.12, 36]} />
-            <meshPhysicalMaterial color="#1e0a00" roughness={0.06} metalness={0.75}
-              clearcoat={1.0} clearcoatRoughness={0.01} envMapIntensity={3.0} />
+            <cylinderGeometry args={[0.418, 0.418, 0.008, 96]} />
+            <meshPhysicalMaterial color={isDark ? "#060200" : "#0a0300"} roughness={0.05}
+              metalness={0.85} clearcoat={1.0} clearcoatRoughness={0.008}
+              envMapIntensity={isDark ? 6.0 : 3.2}
+              emissive={isDark ? "#1a0600" : "#080200"} emissiveIntensity={isDark ? 0.06 : 0.01} />
           </mesh>
         ))}
       </group>
