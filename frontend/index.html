@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="Gavel & Brief - AI-Powered Legal Intelligence Platform" />
+        <link rel="icon" href="/logo.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
+        <title>Gavel &amp; Brief | Legal Intelligence Platform</title>
+        <style>
+          /* ── Google Translate: hide the default UI bar but keep GT functional ── */
+          #google_translate_element { visibility: hidden; position: absolute; top: -9999px; left: -9999px; }
+          .goog-te-banner-frame.skiptranslate { display: none !important; }
+          /* Remove the body shift GT normally applies */
+          body.translated-ltr, body.translated-rtl { top: 0 !important; }
+          /* Hide the floating GT toolbar */
+          .goog-te-ftab-float { display: none !important; }
+          .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
+          .VIpgJd-ZVi9od-aZ2wEe { display: none !important; }
+        </style>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <div id="google_translate_element"></div>
+
+        <script type="text/javascript">
+          function googleTranslateElementInit() {
+            new window.google.translate.TranslateElement({
+              pageLanguage: 'en',
+              includedLanguages: 'as,bn,doi,gu,hi,kn,ks,mai,ml,mni-Mtei,mr,ne,or,pa,sa,sat-Latn,sd,ta,te,ur,gom',
+              layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+              autoDisplay: false,
+              multilanguagePage: false,
+            }, 'google_translate_element');
+          }
+        </script>
+        <script type="text/javascript"
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+        </script>
+
+        <script type="module" src="/src/index.js"></script>
+    </body>
+</html>
