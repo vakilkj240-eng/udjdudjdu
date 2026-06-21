@@ -436,3 +436,143 @@ input::placeholder, textarea::placeholder {
 .dark .gold-text-glow {
   text-shadow: 0 0 20px rgba(212,175,55,0.6);
 }
+
+/* ══════════════════════════════════════════════
+   SCROLL-REVEAL — base states
+   JS adds .is-visible when element enters viewport
+══════════════════════════════════════════════ */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(4px);
+  transition:
+    opacity    0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform  0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    filter     0.60s ease;
+  will-change: opacity, transform, filter;
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.75s ease;
+  will-change: opacity;
+}
+.reveal-fade.is-visible { opacity: 1; }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition:
+    opacity   0.68s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition:
+    opacity   0.68s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+
+/* Stagger delays for child elements */
+.reveal-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > *:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > *:nth-child(6) { transition-delay: 400ms; }
+
+/* ══════════════════════════════════════════════
+   GLOBAL PERFORMANCE LAYER
+══════════════════════════════════════════════ */
+/* Promote composited layers for animated elements */
+canvas, video,
+[class*="motion-"], [data-motion],
+.parallax, .ticker-track {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Prevent layout thrash on heavy animated cards */
+.premium-card, .card-flat {
+  contain: layout style;
+}
+
+/* Crisp, jitter-free border-radius on transforms */
+.rounded-2xl, .rounded-xl, .rounded-3xl {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+/* ══════════════════════════════════════════════
+   SMOOTH SECTION DIVIDERS
+══════════════════════════════════════════════ */
+.section-wave-top {
+  position: relative;
+  overflow: visible;
+}
+.section-wave-top::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: var(--theme-bg);
+  clip-path: ellipse(55% 100% at 50% 0%);
+  z-index: 1;
+}
+
+/* Ticker strip specific */
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════
+   BUTTON MICRO-INTERACTIONS
+══════════════════════════════════════════════ */
+.btn-primary,
+.btn-secondary,
+.btn-accent {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after,
+.btn-secondary::after,
+.btn-accent::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.14) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.btn-primary:hover::after,
+.btn-secondary:hover::after,
+.btn-accent:hover::after {
+  transform: translateX(100%);
+}
+
+/* ══════════════════════════════════════════════
+   CUSTOM SCROLLBAR — LIGHT
+══════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 8px; background: var(--theme-bg); }
+::-webkit-scrollbar-thumb { background: var(--theme-border-soft); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--theme-gold); }
+
+/* ══════════════════════════════════════════════
+   ANCHOR SMOOTH SCROLL
+══════════════════════════════════════════════ */
+html { scroll-behavior: smooth; }

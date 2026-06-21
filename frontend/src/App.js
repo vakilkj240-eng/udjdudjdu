@@ -51,10 +51,11 @@ const ProtectedRoute = ({ children, allowedRole }) => {
 
 const PageShell = ({ children }) => (
   <motion.div
-    initial={{ opacity: 0, y: 18, scale: 0.992 }}
-    animate={{ opacity: 1, y: 0, scale: 1 }}
-    exit={{ opacity: 0, y: -10, scale: 0.992 }}
-    transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+    initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
+    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+    exit={{ opacity: 0, y: -14, filter: 'blur(3px)', scale: 0.995 }}
+    transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+    style={{ willChange: 'opacity, transform, filter' }}
   >
     {children}
   </motion.div>
@@ -114,13 +115,21 @@ function AppInner() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.8,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 1.15,
+      easing: (t) => {
+        const c4 = (2 * Math.PI) / 4.5;
+        return t === 0 ? 0 : t === 1 ? 1
+          : Math.pow(2, -8 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
+      },
       smoothWheel: true,
+      wheelMultiplier: 0.92,
+      touchMultiplier: 1.8,
+      infinite: false,
     });
-    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
+    let rafId;
+    const raf = (time) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };
+    rafId = requestAnimationFrame(raf);
+    return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
   }, []);
 
   return (
