@@ -1,0 +1,3 @@
+/api/*  https://udjdudjdu-3.onrender.com/api/:splat  200
+/admin/api/*  https://udjdudjdu-3.onrender.com/admin/api/:splat  200
+/ws/video/*  https://udjdudjdu-3.onrender.com/ws/video/:splat  200
