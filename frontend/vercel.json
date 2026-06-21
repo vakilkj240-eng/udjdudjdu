@@ -5,11 +5,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://udjdudjdu-3.onrender.com/api/:path*"
+      "destination": "https://yjm.onrender.com/api/:path*"
     },
     {
       "source": "/admin/api/:path*",
-      "destination": "https://udjdudjdu-3.onrender.com/admin/api/:path*"
+      "destination": "https://yjm.onrender.com/admin/api/:path*"
     },
     {
       "source": "/((?!api).*)",

@@ -8,13 +8,13 @@
 
 [[redirects]]
   from   = "/api/*"
-  to     = "https://udjdudjdu-3.onrender.com/api/:splat"
+  to     = "https://yjm.onrender.com/api/:splat"
   status = 200
   force  = true
 
 [[redirects]]
   from   = "/admin/api/*"
-  to     = "https://udjdudjdu-3.onrender.com/admin/api/:splat"
+  to     = "https://yjm.onrender.com/admin/api/:splat"
   status = 200
   force  = true
 
