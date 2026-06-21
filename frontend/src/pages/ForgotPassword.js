@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, ArrowRight, CheckCircle, Loader2 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import axios from 'axios';
-
-const API_URL = '';
+import API_URL from '../lib/api';
 
 export default function ForgotPassword() {
   const { isDark } = useTheme();

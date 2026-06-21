@@ -3,8 +3,7 @@ import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { Lock, ArrowRight, CheckCircle, Loader2, Eye, EyeOff } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import axios from 'axios';
-
-const API_URL = '';
+import API_URL from '../lib/api';
 
 export default function ResetPassword() {
   const { isDark } = useTheme();
