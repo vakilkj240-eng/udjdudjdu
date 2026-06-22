@@ -5434,15 +5434,27 @@ async def get_legal_news():
         items = _FALLBACK_NEWS
     return {"items": items[:20]}
 
-# Serve React frontend in production
+# Serve React frontend in production (Vite outputs to build/assets/, not build/static/)
 _frontend_build = Path(__file__).parent.parent / "frontend" / "build"
-if _frontend_build.exists() and (_frontend_build / "static").exists():
-    app.mount("/static", StaticFiles(directory=str(_frontend_build / "static")), name="react-static")
+if _frontend_build.exists() and (_frontend_build / "index.html").exists():
+    # Mount all static assets (Vite: assets/, CRA: static/)
+    _assets_dir = _frontend_build / "assets"
+    if _assets_dir.exists():
+        app.mount("/assets", StaticFiles(directory=str(_assets_dir)), name="react-assets")
+    _static_dir = _frontend_build / "static"
+    if _static_dir.exists():
+        app.mount("/static", StaticFiles(directory=str(_static_dir)), name="react-static")
+    # Serve root-level public files (logos, patterns, etc.)
+    app.mount("/public", StaticFiles(directory=str(_frontend_build)), name="react-public")
 
     @app.get("/{full_path:path}", include_in_schema=False)
     async def serve_react(full_path: str):
-        index = _frontend_build / "index.html"
-        return FileResponse(str(index))
+        # Try to serve exact file first (logos, _redirects, etc.)
+        candidate = _frontend_build / full_path
+        if candidate.exists() and candidate.is_file():
+            return FileResponse(str(candidate))
+        # Fall back to index.html for SPA client-side routing
+        return FileResponse(str(_frontend_build / "index.html"))
 
 # Serve Admin Dashboard at /gb-admin/
 _admin_build = Path(__file__).parent.parent / "admin" / "dist"
