@@ -4739,6 +4739,10 @@ async def get_consultations(current_user: dict = Depends(get_current_user)):
 # Include router
 app = FastAPI(title="VakilSetu API")
 
+@app.get("/api/health")
+async def health_check():
+    return {"status": "ok"}
+
 # Include CORS middleware
 app.add_middleware(
     CORSMiddleware,

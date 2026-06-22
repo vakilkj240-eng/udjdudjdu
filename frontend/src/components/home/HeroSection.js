@@ -327,7 +327,7 @@ function JudgeBench() {
    CORINTHIAN PILLAR — full detail
 ───────────────────────────────────────────── */
 function PillarWithFluting({ position, scale = 1 }) {
-  const FLUTES = 24;
+  const FLUTES = 16;
   const H = 10.2 * scale;
   const S = scale;
 
@@ -601,70 +601,157 @@ function ScalePan({ x }) {
   );
 }
 
+function LadyJustice() {
+  /* Simplified iconic silhouette — head, torso, robe */
+  return (
+    <group position={[0, 2.5, 0]}>
+      {/* Head */}
+      <mesh castShadow>
+        <sphereGeometry args={[0.12, 20, 20]} />
+        <meshPhysicalMaterial color="#d4c8b0" roughness={0.55} metalness={0.0} clearcoat={0.3} envMapIntensity={0.6} />
+      </mesh>
+      {/* Crown / laurel */}
+      {Array.from({ length: 7 }).map((_, i) => {
+        const a = (i / 7) * Math.PI;
+        return (
+          <mesh key={i} position={[Math.sin(a) * 0.115, 0.08 + Math.cos(a * 0.5) * 0.03, Math.cos(a) * 0.04]}>
+            <cylinderGeometry args={[0.008, 0.004, 0.09, 6]} />
+            <meshPhysicalMaterial {...GOLD} clearcoat={0.9} />
+          </mesh>
+        );
+      })}
+      {/* Crown band */}
+      <mesh position={[0, 0.06, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.118, 0.009, 10, 24, Math.PI]} />
+        <meshPhysicalMaterial {...DARK_GOLD} clearcoat={0.8} />
+      </mesh>
+      {/* Neck */}
+      <mesh position={[0, -0.17, 0]} castShadow>
+        <cylinderGeometry args={[0.044, 0.052, 0.16, 16]} />
+        <meshPhysicalMaterial color="#cfc2a4" roughness={0.6} metalness={0.0} clearcoat={0.2} />
+      </mesh>
+      {/* Shoulders */}
+      <mesh position={[0, -0.28, 0]} castShadow>
+        <cylinderGeometry args={[0.22, 0.18, 0.14, 20]} />
+        <meshPhysicalMaterial color="#c8bea8" roughness={0.52} metalness={0.0} clearcoat={0.25} envMapIntensity={0.5} />
+      </mesh>
+      {/* Torso — draped robe */}
+      <mesh position={[0, -0.70, 0]} castShadow>
+        <cylinderGeometry args={[0.16, 0.26, 0.80, 20]} />
+        <meshPhysicalMaterial color="#bfb5a0" roughness={0.68} metalness={0.0} clearcoat={0.15} sheen={0.22} sheenColor="#d4c8aa" />
+      </mesh>
+      {/* Lower robe — flared */}
+      <mesh position={[0, -1.22, 0]} castShadow>
+        <cylinderGeometry args={[0.26, 0.40, 0.62, 20]} />
+        <meshPhysicalMaterial color="#b8ae98" roughness={0.72} metalness={0.0} clearcoat={0.12} sheen={0.18} sheenColor="#ccc0aa" />
+      </mesh>
+      {/* Gold sash / belt */}
+      <mesh position={[0, -0.38, 0]}>
+        <torusGeometry args={[0.175, 0.018, 12, 28]} />
+        <meshPhysicalMaterial {...GOLD} clearcoat={0.9} clearcoatRoughness={0.04} />
+      </mesh>
+      {/* Right arm — raised, holding scales aloft (implied) */}
+      <mesh position={[0.25, -0.22, 0]} rotation={[0, 0, -0.55]} castShadow>
+        <cylinderGeometry args={[0.035, 0.028, 0.48, 12]} />
+        <meshPhysicalMaterial color="#cfc2a4" roughness={0.58} metalness={0.0} clearcoat={0.2} />
+      </mesh>
+      {/* Left arm — holding sword (implied downward) */}
+      <mesh position={[-0.24, -0.30, 0]} rotation={[0, 0, 0.65]} castShadow>
+        <cylinderGeometry args={[0.030, 0.024, 0.44, 12]} />
+        <meshPhysicalMaterial color="#cfc2a4" roughness={0.58} metalness={0.0} clearcoat={0.2} />
+      </mesh>
+      {/* Sword blade */}
+      <mesh position={[-0.42, -0.54, 0]} rotation={[0, 0, 0.65]}>
+        <boxGeometry args={[0.012, 0.50, 0.022]} />
+        <meshPhysicalMaterial color="#d0d4e0" roughness={0.06} metalness={0.92} clearcoat={1.0} clearcoatRoughness={0.01} envMapIntensity={4.0} />
+      </mesh>
+      {/* Sword hilt */}
+      <mesh position={[-0.33, -0.30, 0]} rotation={[0, 0, -0.35]}>
+        <boxGeometry args={[0.10, 0.016, 0.022]} />
+        <meshPhysicalMaterial {...GOLD} clearcoat={0.9} />
+      </mesh>
+      {/* Blindfold */}
+      <mesh position={[0, -0.01, 0.112]}>
+        <boxGeometry args={[0.22, 0.038, 0.012]} />
+        <meshPhysicalMaterial color="#c8a878" roughness={0.7} metalness={0.0} clearcoat={0.1} transparent opacity={0.9} />
+      </mesh>
+    </group>
+  );
+}
+
 function ScalesOfJustice() {
   const swingRef = useRef();
   useFrame(({ clock }) => {
     if (swingRef.current) {
-      swingRef.current.rotation.z = Math.sin(clock.getElapsedTime() * 0.42) * 0.028;
+      const t = clock.getElapsedTime();
+      swingRef.current.rotation.z = Math.sin(t * 0.42) * 0.032 + Math.sin(t * 0.19) * 0.010;
     }
   });
   return (
     <group position={[-3.2, -4.65, 0.55]}>
-      {/* Stepped marble plinth */}
+      {/* Stepped marble plinth — 4 tiers */}
       {[
-        [0, 0.04, [0.62, 0.08, 0.62]],
-        [0, -0.04, [0.76, 0.1, 0.76]],
-        [0, -0.15, [0.88, 0.14, 0.88]],
+        [0, 0.06, [0.62, 0.09, 0.62]],
+        [0, -0.03, [0.80, 0.12, 0.80]],
+        [0, -0.16, [0.96, 0.16, 0.96]],
+        [0, -0.32, [1.10, 0.12, 1.10]],
       ].map(([x, y, size], i) => (
         <mesh key={i} position={[x, y, 0]} castShadow>
           <boxGeometry args={size} />
-          <meshPhysicalMaterial color="#eae4da" roughness={0.12} metalness={0.0}
-            clearcoat={0.9} clearcoatRoughness={0.04} envMapIntensity={0.8} />
+          <meshPhysicalMaterial color="#eae4da" roughness={0.09} metalness={0.0}
+            clearcoat={1.0} clearcoatRoughness={0.03} envMapIntensity={1.2} />
         </mesh>
       ))}
-      {/* Column */}
-      <mesh position={[0, 1.1, 0]} castShadow>
-        <cylinderGeometry args={[0.035, 0.044, 2.18, 32]} />
+      {/* Gold plinth edge band */}
+      <mesh position={[0, -0.10, 0]}>
+        <boxGeometry args={[0.83, 0.016, 0.83]} />
+        <meshPhysicalMaterial {...DARK_GOLD} clearcoat={0.9} />
+      </mesh>
+      {/* Column — thicker, more regal */}
+      <mesh position={[0, 1.18, 0]} castShadow>
+        <cylinderGeometry args={[0.042, 0.054, 2.42, 36]} />
         <meshPhysicalMaterial {...BRIGHT_GOLD} />
       </mesh>
       {/* Decorative rings on column */}
-      {[0.32, 0.78, 1.42, 1.88].map((y, i) => (
+      {[0.28, 0.70, 1.18, 1.68, 2.08].map((y, i) => (
         <mesh key={i} position={[0, y, 0]}>
-          <torusGeometry args={[0.058, 0.014, 14, 28]} />
-          <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.04} />
+          <torusGeometry args={[0.066, 0.016, 16, 32]} />
+          <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.03} />
         </mesh>
       ))}
-      {/* Top finial sphere */}
-      <mesh position={[0, 2.28, 0]}>
-        <sphereGeometry args={[0.075, 48, 48]} />
-        <meshPhysicalMaterial {...BRIGHT_GOLD} emissiveIntensity={0.12} />
+      {/* Column base flare */}
+      <mesh position={[0, 0.08, 0]}>
+        <cylinderGeometry args={[0.090, 0.054, 0.16, 24]} />
+        <meshPhysicalMaterial {...GOLD} clearcoat={0.9} />
       </mesh>
-      {/* Flame */}
-      <mesh position={[0, 2.46, 0]}>
-        <coneGeometry args={[0.036, 0.2, 16]} />
-        <meshPhysicalMaterial {...GOLD} clearcoat={0.8} />
-      </mesh>
-      {/* ── Animated pendulum group — beam + arms + chains + pans all pivot at column top ── */}
-      <group ref={swingRef} position={[0, 2.12, 0]}>
-        {/* Cross-beam — static slight tilt preserved on the mesh, pendulum on parent group */}
-        <mesh rotation={[0, 0, 0.055]}>
-          <cylinderGeometry args={[0.016, 0.016, 2.28, 24]} />
+      {/* Lady Justice figure — stands atop the column */}
+      <LadyJustice />
+      {/* ── Animated pendulum group ── */}
+      <group ref={swingRef} position={[0, 2.28, 0]}>
+        {/* Cross-beam */}
+        <mesh rotation={[0, 0, 0.045]}>
+          <cylinderGeometry args={[0.018, 0.018, 2.60, 28]} />
           <meshPhysicalMaterial {...BRIGHT_GOLD} />
         </mesh>
+        {/* Center hub */}
+        <mesh position={[0, 0, 0]}>
+          <sphereGeometry args={[0.048, 24, 24]} />
+          <meshPhysicalMaterial {...GOLD} clearcoat={1.0} clearcoatRoughness={0.02} emissiveIntensity={0.08} />
+        </mesh>
         {/* Arm end knobs */}
-        {[-1.05, 1.05].map((x, i) => (
+        {[-1.22, 1.22].map((x, i) => (
           <mesh key={i} position={[x, 0, 0]}>
-            <sphereGeometry args={[0.036, 32, 32]} />
+            <sphereGeometry args={[0.044, 28, 28]} />
             <meshPhysicalMaterial {...BRIGHT_GOLD} />
           </mesh>
         ))}
-        {/* Chains — y offset by -2.12 into local swing-group space */}
-        <ChainAssembly x={-1.05} topY={-0.40} panY={-0.98} count={12} />
-        <ChainAssembly x={1.05} topY={-0.40} panY={-0.98} count={12} />
+        {/* Chains */}
+        <ChainAssembly x={-1.22} topY={-0.42} panY={-1.10} count={14} />
+        <ChainAssembly x={1.22} topY={-0.42} panY={-1.10} count={14} />
         {/* Pans */}
-        <group position={[0, -0.98, 0]}>
-          <ScalePan x={-1.05} />
-          <ScalePan x={1.05} />
+        <group position={[0, -1.10, 0]}>
+          <ScalePan x={-1.22} />
+          <ScalePan x={1.22} />
         </group>
       </group>
     </group>
@@ -1089,7 +1176,7 @@ function GavelScene({ onStrikeComplete, isMobile, isDark }) {
       {/* Main key — warm chandelier | dark: warm gold fill */}
       <directionalLight position={[5, 22, 12]} intensity={isDark ? 2.8 : (isMobile ? 3.2 : 4.8)} color={isDark ? "#f0d890" : "#fff6ee"}
         castShadow={!isMobile}
-        shadow-mapSize={[4096, 4096]}
+        shadow-mapSize={[2048, 2048]}
         shadow-camera-near={0.5} shadow-camera-far={65}
         shadow-camera-left={-20} shadow-camera-right={20}
         shadow-camera-top={20} shadow-camera-bottom={-20}
@@ -1125,7 +1212,7 @@ function GavelScene({ onStrikeComplete, isMobile, isDark }) {
       <pointLight position={[0.5, 2.5, 6.0]} intensity={isDark ? 12.0 : (isMobile ? 3.5 : 5.5)} color="#D4A83A" distance={26} decay={1.7} />
       <pointLight position={[-3.2, -3.0, 2.0]} intensity={isDark ? 4.5 : (isMobile ? 1.2 : 1.8)} color={isDark ? "#D4AF37" : "#ffb84a"} distance={14} decay={2.2} />
 
-      <Environment preset={isDark ? "night" : "warehouse"} background={false} />
+      <Environment preset={isDark ? "night" : "studio"} background={false} />
       <BackWall isDark={isDark} />
       <MarbleFloor isDark={isDark} />
 
@@ -1161,12 +1248,12 @@ function GavelScene({ onStrikeComplete, isMobile, isDark }) {
       </mesh>
 
       <Sparkles
-        count={isMobile ? 55 : 320} scale={isMobile ? 16 : 24}
+        count={isMobile ? 35 : 160} scale={isMobile ? 16 : 24}
         size={isMobile ? 1.0 : 1.6} speed={isMobile ? 0.06 : 0.12}
         color={isDark ? "#FFD700" : "#D4A83A"} opacity={isDark ? 0.55 : 0.28} />
       {!isMobile && <>
-        <Sparkles count={100} scale={14} size={0.7} speed={0.05} color={isDark ? "#D4AF37" : "#ffffff"} opacity={isDark ? 0.25 : 0.12} />
-        <ContactShadows position={[0, -5.14, 0]} opacity={0.88} scale={44} blur={3.8} far={14} color="#120602" />
+        <Sparkles count={60} scale={14} size={0.7} speed={0.05} color={isDark ? "#D4AF37" : "#ffffff"} opacity={isDark ? 0.25 : 0.12} />
+        <ContactShadows position={[0, -5.14, 0]} opacity={0.75} scale={40} blur={3.2} far={12} color="#120602" />
       </>}
     </group>
   );
@@ -1185,6 +1272,7 @@ export default function HeroSection() {
   const { isDark } = useTheme();
   const [isStruck, setIsStruck] = useState(false);
   const [webglLost, setWebglLost] = useState(false);
+  const [canvasReady, setCanvasReady] = useState(false);
   const isMobile = useMemo(() => typeof window !== 'undefined' && window.innerWidth < 768, []);
 
   const slowScrollToFeatures = useCallback(() => {
@@ -1234,29 +1322,42 @@ export default function HeroSection() {
     <section id="hero" className="relative h-screen w-full overflow-hidden bg-transparent">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background z-[1] pointer-events-none" />
 
+      {/* Instant warm gradient — shown while WebGL compiles, fades out once canvas is ready */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          opacity: canvasReady ? 0 : 1,
+          transition: 'opacity 1.0s ease',
+          background: isDark
+            ? 'radial-gradient(ellipse 90% 65% at 50% 60%, rgba(212,175,55,0.14) 0%, rgba(124,29,43,0.09) 45%, transparent 100%)'
+            : 'radial-gradient(ellipse 90% 65% at 50% 60%, rgba(212,175,55,0.10) 0%, rgba(124,29,43,0.06) 45%, transparent 100%)',
+        }}
+      />
+
       <motion.div className="absolute inset-0 z-0"
         animate={isStruck
           ? { opacity: 0, filter: 'blur(6px)', transition: { duration: 1.6, ease: EASE_IN } }
-          : { opacity: 1, filter: 'blur(0px)' }}>
+          : { opacity: canvasReady ? 1 : 0, filter: 'blur(0px)', transition: { duration: canvasReady ? 1.2 : 0, ease: EASE_OUT } }}>
         {checkWebGL() && !webglLost ? (
           <Canvas
             camera={{ position: [0, 6.5, isMobile ? 26 : 23], fov: isMobile ? 50 : 42 }}
             shadows={isMobile ? false : 'soft'}
-            dpr={isMobile ? [0.75, 1.2] : [1, 2.5]}
-            performance={{ min: 0.45 }}
+            dpr={isMobile ? [0.75, 1.0] : [1, 1.5]}
+            performance={{ min: 0.5 }}
             gl={{
-              antialias: true,
+              antialias: !isMobile,
               alpha: true,
               toneMapping: THREE.ACESFilmicToneMapping,
               toneMappingExposure: isDark ? 1.65 : (isMobile ? 1.15 : 1.32),
               powerPreference: 'high-performance',
-              shadowMapType: THREE.PCFShadowMap,
+              shadowMapType: THREE.PCFSoftShadowMap,
             }}
             onCreated={({ gl }) => {
               gl.domElement.addEventListener('webglcontextlost', (e) => {
                 e.preventDefault();
                 setWebglLost(true);
               });
+              requestAnimationFrame(() => setCanvasReady(true));
             }}>
             <GavelScene onStrikeComplete={handleStrikeComplete} isMobile={isMobile} isDark={isDark} />
           </Canvas>

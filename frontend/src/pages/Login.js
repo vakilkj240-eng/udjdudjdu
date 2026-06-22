@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
-import { Scale, Loader2, ArrowRight, Eye, EyeOff, PenLine } from 'lucide-react';
+import { Scale, Loader2, ArrowRight, Eye, EyeOff, PenLine, Wifi } from 'lucide-react';
 
 function formatApiErrorDetail(detail) {
   if (detail == null) return 'Something went wrong. Please try again.';
@@ -22,9 +22,22 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [slowConn, setSlowConn] = useState(false);
+  const slowTimer = useRef(null);
   const { login } = useAuth();
   const { isDark } = useTheme();
   const navigate = useNavigate();
+
+  // Show "waking up server" hint if login takes more than 4 seconds
+  useEffect(() => {
+    if (loading) {
+      slowTimer.current = setTimeout(() => setSlowConn(true), 4000);
+    } else {
+      clearTimeout(slowTimer.current);
+      setSlowConn(false);
+    }
+    return () => clearTimeout(slowTimer.current);
+  }, [loading]);
 
   const performLogin = async (loginEmail, loginPassword) => {
     setError('');
@@ -200,6 +213,14 @@ const Login = () => {
               </Link>
             </div>
 
+            {slowConn && (
+              <div className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm"
+                style={{ background: 'rgba(212,175,55,0.10)', border: '1px solid rgba(212,175,55,0.3)', color: '#92720a' }}>
+                <Wifi className="w-4 h-4 flex-shrink-0 animate-pulse" />
+                <span>Server is waking up — this can take up to 30 seconds on first login. Please wait…</span>
+              </div>
+            )}
+
             <button
               type="submit"
               className="w-full text-white font-semibold py-4 px-6 rounded-lg transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
@@ -208,7 +229,7 @@ const Login = () => {
               data-testid="login-submit-button"
             >
               {loading ? (
-                <><Loader2 className="w-5 h-5 animate-spin" />Signing in...</>
+                <><Loader2 className="w-5 h-5 animate-spin" />{slowConn ? 'Connecting to server…' : 'Signing in…'}</>
               ) : (
                 <>Sign In <ArrowRight className="w-5 h-5" /></>
               )}
